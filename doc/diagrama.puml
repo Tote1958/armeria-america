@@ -1,0 +1,35 @@
+@startuml Diagrama
+class Producto{
+    - nombre
+    - calibre
+    - marca
+    - descripcion
+    - tipo 
+}
+
+class Cliente{
+    - nombre
+    - numero_de_telefono
+    - codigo_de_cliente
+    - direccion
+    - email  
+} 
+class Proveedor{
+    - nombre
+    - cuil 
+    - email 
+    - codigo
+} 
+' Arma, accesorio, municiones
+class TipoProducto{
+    - nombre
+    - codigo
+    - descripcion 
+}
+class Marca{
+    - nombre
+}
+Producto -- Marca
+Producto -- TipoProducto
+
+@enduml

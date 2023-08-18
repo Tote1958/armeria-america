@@ -1,0 +1,3 @@
+# despues de activar el entorno virtual, escribir la version de todas las librerias 
+Flask == 2.3.2
+

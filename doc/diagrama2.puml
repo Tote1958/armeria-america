@@ -1,0 +1,19 @@
+@startuml Diagrama
+
+class Producto {
+    - nombre
+    - descripcion
+    - marca
+    - tipo
+}
+
+class Accesorio {
+    
+}
+
+class Arma
+
+class Municion
+
+
+@enduml

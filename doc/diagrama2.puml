@@ -1,19 +1,45 @@
 @startuml Diagrama
 
 class Producto {
-    - nombre
+    - modelo 
     - descripcion
     - marca
     - tipo
+    - codigo
 }
 
-class Accesorio {
-    
+class Accesorio 
+
+class Arma {
+    - calibre
 }
 
-class Arma
+class Municion {
+    - calibre
+    - cantidad
+}
 
-class Municion
+class Persona{
+    - nombre
+    - apeellido
+    - direccion
+    - contacto
+    - email
+}
 
+class Cliente {
+    - codigo_de_cliente
+}
+
+class Proveedor {
+    - codigo_de_proveedor
+}
+
+Producto -- Accesorio
+Producto -- Arma
+Producto -- Municion
+
+Persona -- Cliente
+Persona -- Proveedor
 
 @enduml

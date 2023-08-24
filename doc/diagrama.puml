@@ -4,7 +4,8 @@ class Producto{
     - calibre
     - marca
     - descripcion
-    - tipo 
+    - tipo
+    - numero_serie
 }
 
 class Cliente{

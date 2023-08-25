@@ -1,4 +1,15 @@
 from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
+import os
+
+
+
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+print(basedir)
+load_dotenv(os.path.join(basedir,'.env'))
+
+
 
 db = SQLAlchemy()
 

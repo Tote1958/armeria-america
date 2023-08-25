@@ -2,11 +2,12 @@ from .. import db
 
 class Client:
     __tablename__ = 'clients'
-    __name = ''
-    __dni = ''
-    __client_code = ''
-    __address = ''
-    __email = ''
+    __id = db.Column(db.Integer, primary_key=True)
+    __name = db.Column(db.String(250))
+    __dni = db.Column(db.String(250))
+    __client_code = db.Column(db.String(250))
+    __address = db.Column(db.String(250))
+    __email = db.Column(db.String(250))
 
     @property
     def client_code(self)->str:

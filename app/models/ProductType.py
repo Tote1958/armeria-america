@@ -1,8 +1,11 @@
-class Product_type:
+from config import db
+
+class Product_type(db.Model):
     __tablename__ = 'product_type'
-    __name__ = ''
-    __code__ = ''
-    __description__ = ''
+    id = db.Column(db.Integer, primary_key=True)
+    __name__ = db.Column(db.String(250))
+    __code__ = db.Column(db.String(250))
+    __description__ = db.Column(db.String(250)) 
 
 # Property permite que el método sea llamado como un atributo
     @property 

@@ -1,11 +1,14 @@
+from .. import db
+
 class Product(db.Model):
     __tablename__ = 'products'
-    __name = ''
-    __caliber = ''
-    __brand = ''
-    __description = ''
-    __type = ''
-    __serial_number = ''
+    __id = db.Column('id' , db.Integer, primary_key=True)
+    __name = db.Column('name' , db.String(250))
+    __caliber = db.Column('caliber', db.String(250))
+    __brand = db.Column('brand', db.String(250))
+    __description = db.Column('description'. db.String(250))
+    __type = db.Column('type', db.String(250))
+    __serial_number = db.Column('serial_number', db.String(250))
 
     @property # Es un decorador, hace un patron de diseño, le agrega funcionalidad al método en este caso, lo encapsula en un atributo, puede estar arriba de una clase o arriba de 
     def name(self)->str: # Sería el get name

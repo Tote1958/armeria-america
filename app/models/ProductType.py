@@ -1,4 +1,4 @@
-from config import db
+from app.config.database import db
 
 class Product_type(db.Model):
     __tablename__ = 'product_type'

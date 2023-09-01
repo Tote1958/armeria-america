@@ -1,4 +1,4 @@
-
+from app.config.database import db
 
 class Supplier(db.Model):
     __name__= 'users'

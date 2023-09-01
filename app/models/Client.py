@@ -1,4 +1,4 @@
-from .. import db
+from app.config.database import db
 
 class Client:
     __tablename__ = 'clients'

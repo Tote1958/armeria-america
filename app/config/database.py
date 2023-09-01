@@ -2,12 +2,14 @@ from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
 from pathlib import Path
+from flask_migrate import Migrate
 
 basedir = os.path.abspath(Path(__file__).parents[2])
 load_dotenv(os.path.join(basedir, '.env'))
 
 
 db = SQLAlchemy()
+migrate = Migrate()
 
 USER_DB = os.environ.get('USER_DB')
 PASS_DB = os.environ.get('PASS_DB')

@@ -1,10 +1,12 @@
 from app.config.database import db
 
 class Supplier(db.Model):
-    __name__= 'users'
-    __cuil=''
-    __email=''
-    __code=''
+    __tablename__ ='supplier'
+    __id = db.Column('id' , db.Integer, primary_key=True)
+    __name__= db.Column('name' , db.String(250))
+    __cuil= db.Column('cuil', db.String(250))
+    __email= db.Column('email', db.String(250))
+    __code= db.Column('code', db.String(250))
 
     @property #seria como get name, agrega funcionalidad mas a un metodo
     def code(self)->str:

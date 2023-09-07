@@ -2,12 +2,12 @@ from app.config.database import db
 
 class Client(db.Model):
     __tablename__ = 'clients'
-    __id = db.Column(db.Integer, primary_key=True)
-    __name = db.Column(db.String(250))
-    __dni = db.Column(db.String(250))
-    __client_code = db.Column(db.String(250))
-    __address = db.Column(db.String(250))
-    __email = db.Column(db.String(250))
+    __id = db.Column('id',db.Integer, primary_key=True)
+    __name = db.Column('name',db.String(250))
+    __dni = db.Column('dni',db.String(250))
+    __client_code = db.Column('client_code',db.String(250))
+    __address = db.Column('address',db.String(250))
+    __email = db.Column('email',db.String(250))
 
     @property
     def client_code(self)->str:

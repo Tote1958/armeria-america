@@ -2,7 +2,7 @@ from app.config.database import db
 
 class Client(db.Model):
     __tablename__ = 'clients'
-    __id = db.Column('id',db.Integer, primary_key=True)
+    __id = db.Column('id',db.Integer, primary_key=True, autoincrement=True)
     __name = db.Column('name',db.String(250))
     __dni = db.Column('dni',db.String(250))
     __client_code = db.Column('client_code',db.String(250))

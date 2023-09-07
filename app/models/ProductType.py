@@ -3,7 +3,7 @@ from app.config.database import db
 
 class Product_type(db.Model):
     __tablename__ = 'product_type'
-    __id = db.Column('id', db.Integer, primary_key=True)
+    __id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
     __name = db.Column('name', db.String(250))
     __code = db.Column('code', db.String(250))
     __description = db.Column('description', db.String(250)) 

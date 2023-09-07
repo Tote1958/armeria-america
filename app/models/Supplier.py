@@ -2,7 +2,7 @@ from app.config.database import db
 
 class Supplier(db.Model):
     __tablename__ ='supplier'
-    __id = db.Column('id' , db.Integer, primary_key=True)
+    __id = db.Column('id' , db.Integer, primary_key=True, autoincrement=True)
     __name__= db.Column('name' , db.String(250))
     __cuil= db.Column('cuil', db.String(250))
     __email= db.Column('email', db.String(250))

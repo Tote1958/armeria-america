@@ -6,7 +6,7 @@ class Product(db.Model):
     __name = db.Column('name' , db.String(250))
     __caliber = db.Column('caliber', db.String(250))
     __brand = db.Column('brand', db.String(250))
-    __description = db.Column('description'. db.String(250))
+    __description = db.Column('description', db.String(250))
     __type = db.Column('type', db.String(250))
     __serial_number = db.Column('serial_number', db.String(250))
 

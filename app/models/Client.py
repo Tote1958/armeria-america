@@ -1,6 +1,6 @@
 from app.config.database import db
 
-class Client:
+class Client(db.Model):
     __tablename__ = 'clients'
     __id = db.Column(db.Integer, primary_key=True)
     __name = db.Column(db.String(250))

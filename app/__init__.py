@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from app.config.database import *
 from flask_migrate import Migrate
+from app.models import *
 
 def create_app():
     app = Flask(__name__)

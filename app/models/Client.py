@@ -1,39 +1,60 @@
 from app.config.database import db
+from sqlalchemy.ext.hybrid import hybrid_property
 
 class Client(db.Model):
     __tablename__ = 'clients'
-    __id = db.Column('id',db.Integer, primary_key=True, autoincrement=True)
-    __name = db.Column('name',db.String(250))
-    __dni = db.Column('dni',db.String(250))
-    __client_code = db.Column('client_code',db.String(250))
-    __address = db.Column('address',db.String(250))
-    __email = db.Column('email',db.String(250))
+    __id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
+    __name = db.Column('name', db.String(250))
+    __dni = db.Column('dni', db.String(250))
+    __code = db.Column('code', db.String(250)) 
+    __address = db.Column('address', db.String(250))
+    __email = db.Column('email', db.String(250))
 
-    @property
-    def client_code(self)->str:
-        return self.__client_code
+    """name: str name of client max char 50
+       dni: alfanumerico  """
+    def __init__(self, name:str, dni:str, code:str, address:str, email:str):
+        self.__name = name
+        self.__dni = dni
+        self.__code = code
+        self.__address = address
+        self.__email = email
+
+
+
+
+    @hybrid_property
+    def id(self)->int:
+        return self.__id
     
-    @client_code.setter
-    def client_code(self, code:str):
-        self.__client_code = code
+    @id.setter
+    def id(self, id:str):
+        self.__id = id
+
+    @hybrid_property
+    def code(self)->str:
+        return self.__code
     
-    @property
+    @code.setter
+    def code(self, code:str):
+        self.__code = code
+    
+    @hybrid_property
     def name(self)->str:
         return self.__name
     
-    @client_code.setter
+    @name.setter
     def name(self, name:str):
         self.__name = name
     
-    @property
+    @hybrid_property
     def dni(self)->str:
         return self.__dni
     
-    @client_code.setter
+    @dni.setter
     def dni(self, dni:str):
         self.__dni = dni
     
-    @property
+    @hybrid_property
     def address(self)->str:
         return self.__address
     
@@ -41,7 +62,7 @@ class Client(db.Model):
     def address(self, address:str):
         self.__address = address
 
-    @property
+    @hybrid_property
     def email(self)->str:
         return self.__email
     
@@ -54,3 +75,5 @@ class Client(db.Model):
     
     def __eq__(self, value:object) -> bool:
         return self.dni == value.dni
+    
+    

@@ -15,9 +15,11 @@ def create_app():
     
     migrate.init_app(app, db)
 
-    @app.route("/")
-    def hello_world():
-        return "<p>Hello, World!</p>"
+    from app.resources import home, client  
+    app.register_blueprint(home, url_prefix='/api/v1')
+    app.register_blueprint(client, url_prefix='/api/v1')
+
+
     
     return app
 

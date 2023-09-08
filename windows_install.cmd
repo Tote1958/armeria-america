@@ -1,2 +1,7 @@
-call %userprofile%\environment\Scripts\activate
-pip install -r %userprofile%\environment\requirements.txt
+@echo off
+cd ..
+.\Scripts\activate
+pause
+python -m pip install -r armeria-america\requirements.txt
+flask run
+pause

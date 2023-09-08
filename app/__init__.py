@@ -15,9 +15,10 @@ def create_app():
     
     migrate.init_app(app, db)
 
-    from app.resources import home, client  
+    from app.resources import home, client, product
     app.register_blueprint(home, url_prefix='/api/v1')
     app.register_blueprint(client, url_prefix='/api/v1')
+    app.register_blueprint(product, url_prefix='/api/v1')
 
 
     

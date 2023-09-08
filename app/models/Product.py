@@ -1,4 +1,5 @@
 from app.config.database import db
+from sqlalchemy.ext.hybrid import hybrid_property
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -10,7 +11,23 @@ class Product(db.Model):
     __type = db.Column('type', db.String(250))
     __serial_number = db.Column('serial_number', db.String(250))
 
-    @property # Es un decorador, hace un patron de diseño, le agrega funcionalidad al método en este caso, lo encapsula en un atributo, puede estar arriba de una clase o arriba de 
+    '''
+    name: str, name of the product, max char 50
+    caliber: str, caliber of the product, max char 50
+    brand: str, brand of the product, max char 30
+    description: str, description of the product, max char 250
+    type: str, type of the product, max char 20
+    serial_number: str, serial number of the product, max char 100
+    '''
+    def __init__(self, name:str, caliber:str, brand:str, description:str, type:str, serial_number:str): # Constructor
+        self.__name = name
+        self.__caliber = caliber
+        self.__brand = brand
+        self.__description = description
+        self.__type = type
+        self.__serial_number = serial_number
+
+    @hybrid_property # Es un decorador, hace un patron de diseño, le agrega funcionalidad al método en este caso, lo encapsula en un atributo, puede estar arriba de una clase o arriba de 
     def name(self)->str: # Sería el get name
         return self.__name
     
@@ -18,7 +35,7 @@ class Product(db.Model):
     def name(self, value:str):
         self.__name = value
 
-    @property
+    @hybrid_property
     def caliber(self)->str: # Sería el get caliber
         return self.__caliber
     
@@ -26,7 +43,7 @@ class Product(db.Model):
     def caliber(self, value:str):
         self.__caliber = value
     
-    @property
+    @hybrid_property
     def brand(self)->str: # Sería el get brand
         return self.__brand
     
@@ -34,7 +51,7 @@ class Product(db.Model):
     def brand(self, value:str):
         self.__brand = value
 
-    @property
+    @hybrid_property
     def description(self)->str: # Sería el get description
         return self.__description
     
@@ -42,7 +59,7 @@ class Product(db.Model):
     def description(self, value:str):
         self.__description = value
     
-    @property
+    @hybrid_property
     def type(self)->str: # Sería el get type
         return self.__type
     
@@ -50,7 +67,7 @@ class Product(db.Model):
     def type(self, value:str):
         self.__type = value
     
-    @property
+    @hybrid_property
     def serial_number(self)->str: # Sería el get serial number
         return self.__serial_number
     

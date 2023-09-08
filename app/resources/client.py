@@ -1,5 +1,8 @@
 from flask import Blueprint, jsonify
 from app.services.client_service import ClientService
+from ..mapping.client_schema import ClientSchema
+
+ps = ClientSchema(many=True)
 
 client = Blueprint('client',__name__)
 

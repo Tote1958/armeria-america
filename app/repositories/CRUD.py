@@ -22,3 +22,5 @@ class CRUD(ABC):
     @abstractmethod
     def delete(self, entity:db.Model):
         pass
+
+#Es para realizar las consultas en la base de datos    

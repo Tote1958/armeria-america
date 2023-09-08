@@ -6,7 +6,7 @@ class ProductTypeService:
     '''
     return a list of all product types
     '''
-    def get_all(self) -> []:
+    def find_all(self) -> []:
         list_product_type = []
         productType1 = ProductType('Silenciador', 'SR', 'Silenciador monolitico')
         productType2 = ProductType('Mira', 'MA', 'Mira termica')

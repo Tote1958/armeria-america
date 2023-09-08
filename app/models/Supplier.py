@@ -21,6 +21,14 @@ class Supplier(db.Model):
         self.__email = email
         self.__code = code
 
+    @hybrid_property
+    def id(self)->int:
+        return self.__id
+    
+    @id.setter
+    def id(self, id:str):
+        self.__id = id
+
     @hybrid_property #seria como get name, agrega funcionalidad mas a un metodo
     def code(self)->int: #ver si es int o str
         return self.__code

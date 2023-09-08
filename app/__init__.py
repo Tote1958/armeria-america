@@ -3,9 +3,11 @@ from flask_cors import CORS
 from app.config.database import *
 from flask_migrate import Migrate
 from app.models import *
+import marshmallow
 
 def create_app():
     app = Flask(__name__)
+    ma = marshmallow()
     CORS(app)
 
     app.config['SQLALCHEMY_DATABASE_URI'] = FULL_URL_DB

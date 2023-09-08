@@ -1,15 +1,28 @@
 from app.config.database import db
+from sqlalchemy.ext.hybrid import hybrid_property
 
 class Supplier(db.Model):
     __tablename__ ='supplier'
     __id = db.Column('id' , db.Integer, primary_key=True, autoincrement=True)
-    __name__= db.Column('name' , db.String(250))
+    __name = db.Column('name' , db.String(250))
     __cuil= db.Column('cuil', db.String(250))
     __email= db.Column('email', db.String(250))
-    __code= db.Column('code', db.String(250))
+    __code= db.Column('code', db.String(250)) 
 
-    @property #seria como get name, agrega funcionalidad mas a un metodo
-    def code(self)->str:
+    """
+    name: str name of supplier max char 250
+    cuil: str cuil of supplier max char 250
+    email: str email of supplier max char 250
+    code: str code of supplier max char 250
+    """
+    def __init__(self, name:str, cuil:str, email:str, code:str): #Constructor(parametros)
+        self.__name = name
+        self.__cuil = cuil
+        self.__email = email
+        self.__code = code
+
+    @hybrid_property #seria como get name, agrega funcionalidad mas a un metodo
+    def code(self)->int: #ver si es int o str
         return self.__code
     
     @code.setter #seria como set name, el arroba es un decorador, un patron de diseño
@@ -17,16 +30,16 @@ class Supplier(db.Model):
         self.__code = code
     
     
-    @property
+    @hybrid_property
     def name(self)->str:
-        return self.__name__
+        return self.__name
     
     @name.setter
     def code (self, name:str):
         self.__name = name
 
 
-    @property
+    @hybrid_property
     def cuil(self)->str:
         return self.__cuil
     
@@ -35,7 +48,7 @@ class Supplier(db.Model):
         self.__cuil = cuil
 
     
-    @property
+    @hybrid_property
     def email(self)->str:
         return self.__email
     
@@ -49,3 +62,4 @@ class Supplier(db.Model):
     
     def __eq__(self,__value:object) -> bool: #comparamos si dos objetos son iguales
         return self.codigo == __value.code and self.name == __value.name
+    

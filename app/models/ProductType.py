@@ -2,7 +2,7 @@ from app.config.database import db
 from sqlalchemy.ext.hybrid import hybrid_property
 
 
-class Product_type(db.Model):
+class ProductType(db.Model):
     __tablename__ = 'product_type'
     __id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
     __name = db.Column('name', db.String(250))

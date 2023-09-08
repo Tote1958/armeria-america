@@ -1,4 +1,4 @@
 from .Client import Client
 from .Product import Product
-from .ProductType import Product_type
+from .ProductType import ProductType
 from .Supplier import Supplier

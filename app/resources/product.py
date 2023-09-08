@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify
 from app.services.product_service import ProductService
+from ..mapping.product_schema import ProductSchema
 
+ps = ProductSchema(many=True) # many=True es para cuando tienen que recibir varios parametros
 product = Blueprint('product', __name__)
 
 @product.route('/products/', methods=['GET'])

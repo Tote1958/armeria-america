@@ -6,15 +6,8 @@ class SupplierService:
     def __init__(self):
         self.__repo = SupplierRepository()
     
-    def fin(self, id) -> Supplier:
+    def find_by_id(self, id) -> Supplier:
         return self.__repo.find_by_id(id)
-    
-    def create(self, entity: Supplier) -> Supplier:
-        return self.__repo.create(entity)
-    
-    def update(self, entity: Supplier, id:int) -> Supplier:
-        return self.__repo.update(entity, id)
-    
 
 
     def find_all(self) -> []: #es un parametro de salida
@@ -29,3 +22,10 @@ class SupplierService:
         """db.session.add_all(list_supplier) 
         db.session.commit()""" #Esto guarda ese usuario en la
         return list_supplier
+    
+
+    """    def create(self, entity: Supplier) -> Supplier:
+        return self.__repo.create(entity)
+    
+    def update(self, entity: Supplier, id:int) -> Supplier:
+        return self.__repo.update(entity, id)"""

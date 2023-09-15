@@ -1,9 +1,9 @@
 from app.models import ProductType
-from repositories import ProductType_repository
+from app.repositories import ProductTypeRepository
 
 class ProductTypeService:
     def __init__(self):
-        self.repo = ProductTypeRepository()
+        self.__repo = ProductTypeRepository()
     '''
     return a list of all product types
     '''
@@ -14,7 +14,7 @@ class ProductTypeService:
         productType3 = ProductType('Fusil de Asalto', 'FA', 'Fusil de asalto de 5.56')
         return self.__repo.find_all()
     
-    def find(self, id) -> ProductType:
+    def find_by_id(self, id) -> ProductType:
         return self.__repo.find_by_id(id)
     
     def create(self, entity: ProductType):

@@ -1,3 +1,5 @@
 from .client_repository import ClientRepository
 from .product_repository import ProductRepository
-from .CRUD import *
+from .productType_repository import ProductTypeRepository
+from .supplier_repository import SupplierRepository
+from .CRUD import Create, Read, Update, Delete

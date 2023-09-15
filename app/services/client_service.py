@@ -1,9 +1,9 @@
 from app.models import Client
-from app.repositories.user_repository import UserRepository
+from app.repositories.client_repository import ClientRepository
 from werkzeug.security import generate_password_hash, check_password_hash
 class ClientService:
     def __init__(self):
-        self.__repo = UserRepository()
+        self.__repo = ClientRepository()
 
     def find(self, id) -> Client:
         return self.__repo.find_by_id(id)

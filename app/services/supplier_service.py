@@ -1,8 +1,20 @@
 from app.models import Supplier
+from app.repositories import SupplierRepository
 
 class SupplierService:
     def __init__(self):
-        pass
+        self.__repo = SupplierRepository()
+    
+    def fin(self, id) -> Supplier:
+        return self.__repo.find_by_id(id)
+    
+    def create(self, entity: Supplier) -> Supplier:
+        return self.__repo.create(entity)
+    
+    def update(self, entity: Supplier, id:int) -> Supplier:
+        return self.__repo.update(entity, id)
+    
+
 
     def find_all(self) -> []: #es un parametro de salida
         list_supplier = []

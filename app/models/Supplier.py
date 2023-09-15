@@ -15,6 +15,7 @@ class Supplier(db.Model):
     email: str email of supplier max char 250
     code: str code of supplier max char 250
     """
+    
     def __init__(self, name:str, cuil:str, email:str, code:str): #Constructor(parametros)
         self.__name = name
         self.__cuil = cuil

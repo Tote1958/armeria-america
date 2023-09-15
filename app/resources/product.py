@@ -8,7 +8,7 @@ product = Blueprint('product', __name__)
 @product.route('/products/', methods=['GET'])
 def index():
     service = ProductService()
-    list = ProductService.find_all()
+    list = service.find_all()
     resp = jsonify('OK PRODUCTOS')
     resp.status_code = 200
     return resp

@@ -1,6 +1,6 @@
 from app.models import Product
-from app import db
-from app.repositories import Create, Read, Update, Delete
+from app.config.database import db
+from app.repositories.CRUD import Create, Read, Update, Delete
 
 class ProductRepository(Create, Read, Update, Delete):
     def __init__(self):

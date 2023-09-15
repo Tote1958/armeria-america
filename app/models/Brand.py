@@ -5,7 +5,7 @@ class Brand(db.Model):
     __tablename__ = 'brands'
     __id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
     __name = db.Column('name', db.String(250))
-    __origin = db.Column('name', db.String(250))
+    __origin = db.Column('origin', db.String(250))
 
 
 

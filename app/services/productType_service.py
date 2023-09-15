@@ -1,8 +1,9 @@
 from app.models import ProductType
+from repositories import ProductType_repository
 
 class ProductTypeService:
     def __init__(self):
-        pass
+        self.repo = ProductTypeRepository()
     '''
     return a list of all product types
     '''
@@ -12,3 +13,12 @@ class ProductTypeService:
         productType2 = ProductType('Mira', 'MA', 'Mira termica')
         productType3 = ProductType('Fusil de Asalto', 'FA', 'Fusil de asalto de 5.56')
         return self.__repo.find_all()
+    
+    def find(self, id) -> ProductType:
+        return self.__repo.find_by_id(id)
+    
+    def create(self, entity: ProductType):
+        return self.__repo.create(entity)
+    
+    def update(self, entity: ProductType, id: int) -> ProductType:
+        return self.__repo.update(entity, id)

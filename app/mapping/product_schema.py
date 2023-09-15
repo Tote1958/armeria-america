@@ -1,4 +1,4 @@
-from app.models.Product import Product
+from app.models.product import Product
 from marshmallow import validate, fields, Schema, post_load
 
 class ProductSchema(Schema):

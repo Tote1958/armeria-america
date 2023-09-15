@@ -1,4 +1,4 @@
-from app.models.Brand import Brand
+from app.models.brand import Brand
 from marshmallow import validate, fields, Schema, post_load
 
 class BrandSchema(Schema):

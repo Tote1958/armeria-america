@@ -1,4 +1,4 @@
-from app.models.Supplier import Supplier
+from app.models.supplier import Supplier
 from marshmallow import validate, fields, Schema, post_load
 
 class SupplierSchema(Schema):

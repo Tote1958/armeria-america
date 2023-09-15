@@ -1,4 +1,4 @@
-from app.models.Client import Client
+from app.models.client import Client
 from marshmallow import validate, fields, Schema, post_load
 
 class ClientSchema(Schema):

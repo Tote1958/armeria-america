@@ -1,4 +1,4 @@
-from app.models.ProductType import ProductType
+from app.models.product_type import ProductType
 from marshmallow import validate, fields, Schema, post_load
 
 #dump_only=True significa que no se puede escribir en el campo, solo leer

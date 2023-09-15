@@ -15,3 +15,11 @@ def index():
     resp.status_code = 200
     return resp
 
+@client.route('/client/id/<int:id>', methods=['GET'])
+def find_by_id(id):
+    service = ClientService()
+    object = service.find_by_id(id)
+    result = client_schema.dump(object)
+    resp = jsonify(result)
+    resp.status_code = 200
+    return resp

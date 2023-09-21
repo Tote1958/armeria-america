@@ -14,3 +14,12 @@ def index():
     resp = jsonify(products)
     resp.status_code = 200
     return resp
+
+@product.route('/products/id/<int:id>', methods=['GET'])
+def find_by_id(id):
+    service = ProductService()
+    object = service.find_by_id(id)
+    product = product_schema.dump(object)
+    resp = jsonify(product)
+    resp.status_code = 200
+    return resp

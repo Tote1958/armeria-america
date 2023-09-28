@@ -33,3 +33,9 @@ class ClientRepository(Create, Read, Update, Delete):
     
     def find_by_id(self, id: str) -> Client:
         return db.session.query(self.__model).filter(self.__model.id == id).one()
+    
+    def delete(self, id: int):
+        entity = self.find_by_id(id)
+        db.session.delete(entity)
+        db.session.commit()
+        return entity

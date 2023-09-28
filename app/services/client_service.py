@@ -21,8 +21,8 @@ class ClientService:
     def update(self, entity:Client, id:int) -> Client:
         return self.__repo.update(entity, id)
     
-    def delete(self, entity:Client, id:int) -> Client:
-        return self.__repo.update(entity, id)
+    def delete(self, id:int) -> Client:
+        return self.__repo.delete(entity, id)
     
 
     

@@ -27,7 +27,7 @@ class Client(db.Model):
         return self.__id
     
     @id.setter
-    def id(self, id:str):
+    def id(self, id:int):
         self.__id = id
 
     @hybrid_property

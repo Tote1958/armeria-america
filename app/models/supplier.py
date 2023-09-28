@@ -4,10 +4,10 @@ from sqlalchemy.ext.hybrid import hybrid_property
 class Supplier(db.Model):
     __tablename__ ='supplier'
     __id = db.Column('id' , db.Integer, primary_key=True, autoincrement=True)
-    __name = db.Column('name' , db.String(250))
-    __cuil= db.Column('cuil', db.String(250))
-    __email= db.Column('email', db.String(250))
-    __code= db.Column('code', db.String(250)) 
+    __name = db.Column('name' , db.String(250), unique=True)
+    __cuil= db.Column('cuil', db.String(250), unique=True)
+    __email= db.Column('email', db.String(250), unique=True)
+    __code= db.Column('code', db.String(250), unique=True) 
 
     """
     name: str name of supplier max char 250

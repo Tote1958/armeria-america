@@ -6,8 +6,23 @@ class ProductRepository(Create, Read, Update, Delete):
     def __init__(self):
         self.__model = Product
     
-    def create():
-        pass
+    def create(self, product: Product):
+        #entity = Product(name = product['name'], caliber = product['caliber'], brand = product['brand'], description = ['description'], type = ['type'], serial_number = ['serial_number'])
+        db.session.add(product)
+        db.session.commit()
+        return product
+
+    def update(self, product: Product, id: int) -> Product:
+        entity = self.find_by_id(id)
+        entity.name = product.name
+        entity.caliber = product.caliber
+        entity.brand = product.brand
+        entity.description = product.description
+        entity.type = product.type
+        entity.serial_number = product.serial_number
+        db.session.add(entity)
+        db.session.commit()
+        return entity 
 
     def find_by_id(self, id: str) -> Product:
         return db.session.query(self.__model).filter(self.__model.id == id).one()

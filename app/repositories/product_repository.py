@@ -23,6 +23,16 @@ class ProductRepository(Create, Read, Update, Delete):
         db.session.add(entity)
         db.session.commit()
         return entity 
+    
+    def delete(self, id: int) -> Product:
+        entity = self.find_by_id(id)
+        db.session.delete(entity)
+        db.session.commit()
+        return entity
+    
+    def find_all(self) -> Product:
+        # return super().find_all()
+        return db.session.query(self.__model).all()
 
     def find_by_id(self, id: str) -> Product:
         return db.session.query(self.__model).filter(self.__model.id == id).one()

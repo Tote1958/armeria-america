@@ -1,5 +1,5 @@
 from app.models import Product
-from app.repositories import ProductRepository
+from app.repositories.product_repository import ProductRepository
 
 class ProductService:
 
@@ -8,8 +8,35 @@ class ProductService:
 
     def find_by_id(self, id) -> Product:
         return self.__repo.find_by_id(id)
+    
+    def find_all(self) -> Product:
+        return self.__repo.find_all()
 
-    def find_all(self) -> []:
+    def find_by_name(self, name) -> Product:
+        return self.__repo.find_by_name(name)
+
+    def find_by_caliber(self, caliber) -> Product:
+        return self.__repo.find_by_caliber(caliber)
+    
+    def find_by_brand(self, brand) -> Product:
+        return self.__repo.find_by_brand(brand)
+    
+    def find_by_type(self, type) -> Product:
+        return self.__repo.find_by_type(type)
+    
+    def find_by_serial_number(self, serial_number) -> Product:
+        return self.__repo.find_by_serial_number(serial_number)
+    
+    def create(self, entity: Product) -> Product:
+        return self.__repo.create(entity)
+    
+    def update(self, entity: Product, id:int) -> Product:
+        return self.__repo.update(entity, id)
+    
+    def delete(self, entity: Product, id:int) -> Product:
+        return self.__repo.update(entity, id)
+
+    '''def find_all(self) -> []:
         list_product = []
         product1 = Product()
         product1.name = 'Product Name'
@@ -19,4 +46,4 @@ class ProductService:
         product1.type = 'Munción'
         product1.serial_number = '122-AWE'
         list_product.append(product1)
-        return list_product
+        return list_product'''

@@ -23,3 +23,20 @@ def find_by_id(id):
     resp = jsonify(product)
     resp.status_code = 200
     return resp
+
+@product.route('/products/by_name', methods=['GET'])
+def index():
+    service = ProductService()
+    list = service.find_all()                       # Preguntar al profe como filtrar por nombre
+    products = product_schema_many.dump(list)
+    resp = jsonify(products)
+    resp.status_code = 200
+    return resp
+
+'''
+ faltaría:
+  por calibre (caliber)
+  por marca (brand)
+  por tipo (type)
+  por numero de serie (serial_number)
+'''

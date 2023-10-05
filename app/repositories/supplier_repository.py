@@ -3,10 +3,11 @@ from app.models import Supplier
 from app import db
 from .CRUD import Create, Read, Update, Delete
 
-class SupplierRepository(Read, Update, Create):
+class SupplierRepository(Read, Update, Create, Delete):
 
     def __init__(self):
         self.__model = Supplier
+    
     
     def find_all(self): #Read
         return db.session.query(self.__model).all()
@@ -30,3 +31,11 @@ class SupplierRepository(Read, Update, Create):
         db.session.commit()
         return supplier
     
+    def find_by_name(self, name: str) -> Supplier:
+        return db.session.query(self.__model).filter(self.__model.name == name).one()
+    
+    def delete(self, id: int):
+        entity = self.find_by_id(id)
+        db.session.delete(entity)
+        db.session.commit()
+        return entity

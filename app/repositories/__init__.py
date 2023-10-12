@@ -1,3 +1,4 @@
+from .brand_repository import BrandRepository
 from .client_repository import ClientRepository
 from .product_repository import ProductRepository
 from .productType_repository import ProductTypeRepository

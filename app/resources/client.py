@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from app.services.client_service import ClientService
 from ..mapping.client_schema import ClientSchema
 
@@ -23,3 +23,23 @@ def find_by_id(id):
     resp = jsonify(result)
     resp.status_code = 200
     return resp
+
+@client.route('/client/create/', methods=['POST'])
+def create_client():
+    service = ClientService()
+    client = client_schema.load(request.json)
+    return {"client": client_schema.dump(service.create(client))}, 200
+
+@client.route('/client/name/<string:name>', methods=['POST'])
+def find_by_name(name):
+    service = ClientService()
+    object = service.find_by_name(name)
+    result = client_schema.dump(object)
+    return jsonify(result), 200
+
+@client.route('/client/email/<string:email>', methods=['POST'])
+def find_by_email(email):
+    service = ClientService()
+    object = service.find_by_email(email)
+    result = client_schema.dump(object)
+    return jsonify(result), 200

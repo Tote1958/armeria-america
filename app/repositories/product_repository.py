@@ -38,4 +38,4 @@ class ProductRepository(Create, Read, Update, Delete):
         return db.session.query(self.__model).filter(self.__model.id == id).one()
     
     def find_by_name(self, name: str) -> Product:
-        return db.session.query(self.__model).filter(self.__model.name == name).one()
+        return db.session.query(self.__model).filter(self.__model.name == name)

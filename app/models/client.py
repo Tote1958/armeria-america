@@ -20,8 +20,6 @@ class Client(db.Model):
         self.__email = email
 
 
-
-
     @hybrid_property
     def id(self)->int:
         return self.__id

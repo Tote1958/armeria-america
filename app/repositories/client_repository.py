@@ -8,7 +8,7 @@ class ClientRepository(Create, Read, Update, Delete):
         self.__model = Client
 
     #dto: data transfer object
-    def create(self, dto:Client) -> db.model:
+    def create(self, dto:Client) -> db.Model:
         #entity = Client(name=dto['name'], dni=dto['dni'], code=dto['code'], address=dto['address'], email=dto['email'])
         db.session.add(dto)
         db.session.commit()
@@ -26,7 +26,12 @@ class ClientRepository(Create, Read, Update, Delete):
 
 
     def find_by_name(self, name: str) -> Client:
-        return db.session.query(self.__model).filter(self.__model.name == name).one()
+        list = db.session.query(self.__model).filter(self.__model.name == name) # Ver donde poner el like
+        return list
+    
+    def find_by_email(self, email: str) -> Client:
+        list = db.session.query(self.__model).filter(self.__model.name == email).like() # Ver donde poner el like
+        return list
     
     def find_all(self):
         return db.session.query(self.__model).all()

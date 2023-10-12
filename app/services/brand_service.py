@@ -1,11 +1,29 @@
-from app.models import brand
+from app.models import Brand
+from app.repositories.brand_repository import BrandRepository
 class BrandService:
     def __init__(self):
-        pass
-    def find_all(self) -> []:
-        list_brand =[]
-        brand = brand('Glock', 'Europe')
-        brand.name
-        brand.origin
-        list_brand.append()
-        return list_brand
+        self.__repo = BrandRepository()
+        
+    def find_all(self) -> Brand:
+        return self.__repo.find_all()
+    
+    def find_by_id(self, id) -> Brand:
+        return self.__repo.find_by_id(id)
+    
+
+    def find_by_name(self, name) -> Brand:
+        return self.__repo.find_by_name(name)
+    
+    def find_by_origin(self, origin) -> Brand:
+        return self.__repo.find_by_origin(origin)
+    
+    
+    def create(self, entity: Brand) -> Brand:
+        return self.__repo.create_brand(entity)
+    
+    def update(self, entity:Brand, id:int) -> Brand:
+        return self.__repo.update(entity, id)
+    
+    def delete(self, id:int) -> Brand:
+        return self.__repo.delete(id)
+    

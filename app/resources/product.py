@@ -24,10 +24,10 @@ def find_by_id(id):
     resp.status_code = 200
     return resp
 
-@product.route('/products/by_name', methods=['GET'])
-def index():
+@product.route('/products/name/<string:name>', methods=['GET'])
+def find_by_name():
     service = ProductService()
-    list = service.find_all()                       # Preguntar al profe como filtrar por nombre
+    list = service.find_by_name()                       # Preguntar al profe como filtrar por nombre
     products = product_schema_many.dump(list)
     resp = jsonify(products)
     resp.status_code = 200

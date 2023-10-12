@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.services.supplier_service import SupplierService
 from ..mapping.supplier_schema import SupplierSchema
+from ..models.response_message import ResponseBuilder
 
 supplier_schema_many = SupplierSchema(many=True) # es para que devuelva varios objetos, este se usa para find_all
 supplier_schema = SupplierSchema()
@@ -28,7 +29,9 @@ def find_by_id(id):
 def create_supplier():
     service = SupplierService()
     supplier = supplier_schema.load(request.json)
-    return {"supplier": supplier_schema.dump(service.create(supplier))}, 200
+    response = ResponseBuilder() #Checkear esto, transformar el mensaje con marshmallow
+    response.add_message('Usuario creado exitosamente').add_status_code(200).add_data(supplier)
+    return response.build()
 
 @supplier.route('/suppler/name/<string:name>', methods=['POST'])
 def find_by_name(name):

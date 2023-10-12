@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from app.services.supplier_service import SupplierService
 from ..mapping.supplier_schema import SupplierSchema
 
@@ -23,3 +23,23 @@ def find_by_id(id):
     resp = jsonify(result)
     resp.status_code = 200
     return resp
+
+@supplier.route('/supplier/create', methods=['POST'])
+def create_supplier():
+    service = SupplierService()
+    supplier = supplier_schema.load(request.json)
+    return {"supplier": supplier_schema.dump(service.create(supplier))}, 200
+
+@supplier.route('/suppler/name/<string:name>', methods=['POST'])
+def find_by_name(name):
+    service = SupplierService()
+    object = service.find_by_name(name)
+    result = supplier_schema.dump(object)
+    return jsonify(result), 200
+
+@supplier.route('/supplier/email/<string:email>', methods=['POST'])
+def find_by_email(email):
+    service = SupplierService()
+    object = service.find_by_email(email)
+    result = supplier_schema.dump(object)
+    return jsonify(result), 200

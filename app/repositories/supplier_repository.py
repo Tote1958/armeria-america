@@ -39,3 +39,6 @@ class SupplierRepository(Read, Update, Create, Delete):
         db.session.delete(entity)
         db.session.commit()
         return entity
+    
+    def find_by_email(self, email: str) -> Supplier:
+        return db.session.query(self.__model).filter(self.__model.name == email).one()

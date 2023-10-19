@@ -23,6 +23,7 @@ class ResponseBuilder:
     
     def add_data(self, data: dict):
         self.add_data = data
+        
 
     def build(self):
         return ResponseMessage(

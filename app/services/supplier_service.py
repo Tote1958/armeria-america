@@ -1,4 +1,4 @@
-from app.models import Supplier
+from app.models import Supplier #service va al repository
 from app.repositories.supplier_repository import SupplierRepository
 
 class SupplierService:

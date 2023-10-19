@@ -1,5 +1,5 @@
 from functools import update_wrapper
-from app.models import Supplier
+from app.models import Supplier #En el repository va la comunicacion con la base de datos
 from app import db
 from .CRUD import Create, Read, Update, Delete
 
@@ -32,7 +32,7 @@ class SupplierRepository(Read, Update, Create, Delete):
         return supplier
     
     def find_by_name(self, name: str) -> Supplier:
-        return db.session.query(self.__model).filter(self.__model.name == name).one()
+        return db.session.query(self.__model).filter(self.__model.name == name)
     
     def delete(self, id: int):
         entity = self.find_by_id(id)
@@ -41,4 +41,4 @@ class SupplierRepository(Read, Update, Create, Delete):
         return entity
     
     def find_by_email(self, email: str) -> Supplier:
-        return db.session.query(self.__model).filter(self.__model.name == email).one()
+        return db.session.query(self.__model).filter(self.__model.name == email).like() #like busca la concidencia

@@ -1,16 +1,19 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class ResponseMessage:
     message: str
+    status_code: int
     id: int
     data: dict = None
-    
+
+
 @dataclass
 class ResponseBuilder:
     add_message: str
     add_status_code: int
-    add_data: dict = None
+    add_data: dict
 
     def add_message(self, message: str):
         self.add_message = message
@@ -27,3 +30,5 @@ class ResponseBuilder:
             status_code=self.add_status_code,
             data=self.add_data
         )
+
+    

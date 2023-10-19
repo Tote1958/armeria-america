@@ -1,6 +1,7 @@
 from app.config.database import db
 from sqlalchemy.ext.hybrid import hybrid_property
 
+
 class Client(db.Model):
     __tablename__ = 'clients'
     __id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
@@ -19,17 +20,16 @@ class Client(db.Model):
         self.__address = address
         self.__email = email
 
-
     @hybrid_property
-    def id(self)->int:
+    def id(self) -> int:
         return self.__id
     
     @id.setter
-    def id(self, id:int):
+    def id(self, id: int):
         self.__id = id
 
     @hybrid_property
-    def code(self)->str:
+    def code(self) -> str:
         return self.__code
     
     @code.setter

@@ -1,9 +1,12 @@
 from flask import Blueprint, jsonify, request
 from app.services.client_service import ClientService
 from ..mapping.client_schema import ClientSchema
+from ..models.response_message import ResponseBuilder
+from app.mapping.response_schema import ResponseSchema
 
 client_schema_many = ClientSchema(many=True) # es para que devuelva varios objetos, este se usa para find_all
 client_schema = ClientSchema()
+response_schema = ResponseSchema()
 client = Blueprint('client', __name__)
 
 
@@ -20,11 +23,9 @@ def index():
 @client.route('/client/id/<int:id>', methods=['GET'])
 def find_by_id(id):
     service = ClientService()
-    object = service.find_by_id(id)
-    result = client_schema.dump(object)
-    resp = jsonify(result)
-    resp.status_code = 200
-    return resp
+    response_builder = ResponseBuilder()
+    response_builder.add_message('Usuario encontrado').add_status_code(100).add_data(client_schema.dump(service.find_by_id(id)))
+    return response_schema.dump((response_builder.build())), 200
 
 
 @client.route('/client/create/', methods=['POST'])

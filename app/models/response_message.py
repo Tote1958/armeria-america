@@ -9,7 +9,7 @@ class ResponseMessage:
     data: dict = None
 
 
-@dataclass
+@dataclass(init=False)
 class ResponseBuilder:
     add_message: str
     add_status_code: int

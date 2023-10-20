@@ -1,9 +1,11 @@
 from flask import Blueprint, jsonify, request
 from app.services.brand_service import BrandService
 from app.mapping.brand_schema import BrandSchema
+from app.mapping.response_schema import ResponseSchema
 
 brand_schema_many = BrandSchema(many=True)  # es para que devuelva varios objetos, este se usa para find_all
 brand_schema = BrandSchema()
+response_schema = ResponseSchema()
 brand = Blueprint('brand', __name__)
 
 

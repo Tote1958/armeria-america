@@ -1,7 +1,7 @@
 from app.models import Supplier #service va al repository
 from app.repositories.supplier_repository import SupplierRepository
 
-class SupplierService:
+class SupplierService: #van las tareas
     def __init__(self):
         self.__repo = SupplierRepository()
     

@@ -1,7 +1,7 @@
-from functools import update_wrapper
 from app.models import Supplier #En el repository va la comunicacion con la base de datos
 from app import db
 from .CRUD import Create, Read, Update, Delete
+# es la ultima capa que esta al final con la base de datos, la que rosa con la base de datos
 
 class SupplierRepository(Read, Update, Create, Delete):
 

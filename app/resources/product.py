@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from app.services.product_service import ProductService
 from ..mapping.product_schema import ProductSchema
 from ..models.response_message import ResponseBuilder
-from ..models.response_message import ResponseSchema
+from ..mapping.response_schema import ResponseSchema
 
 product_schema_many = ProductSchema(many=True) # many=True es para cuando tienen que recibir varios parametros
 product_schema = ProductSchema()

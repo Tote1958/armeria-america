@@ -23,8 +23,8 @@ def index():
 @client.route('/client/id/<int:id>', methods=['GET'])
 def find_by_id(id):
     service = ClientService()
-    response_builder = ResponseBuilder()
-    response_builder.add_message('Usuario encontrado').add_status_code(100).add_data(client_schema.dump(service.find_by_id(id)))
+    response_builder = ResponseBuilder("Usuario encontrado", 100, client_schema.dump(service.find_by_id(id)))
+    # Preguntar si esta bien esta forma, esta forma anda
     return response_schema.dump((response_builder.build())), 200
 
 
@@ -35,7 +35,7 @@ def create_client():
     return {"client": client_schema.dump(service.create(client))}, 200
 
 
-@client.route('/client/name/<string:name>', methods=['POST'])
+@client.route('/client/name/<string:name>', methods=['GET'])
 def find_by_name(name):
     service = ClientService()
     object = service.find_by_name(name)
@@ -43,9 +43,9 @@ def find_by_name(name):
     return jsonify(result), 200
 
 
-@client.route('/client/email/<string:email>', methods=['POST'])
+@client.route('/client/email/<string:email>', methods=['GET'])
 def find_by_email(email):
     service = ClientService()
-    object = service.find_by_email(email)
-    result = client_schema.dump(object)
-    return jsonify(result), 200
+    response_builder = ResponseBuilder("Usuario encontrado", 100, client_schema.dump(service.find_by_email(email)))
+    # Preguntar si esta bien esta forma, esta forma anda
+    return response_schema.dump((response_builder.build())), 200

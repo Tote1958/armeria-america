@@ -5,11 +5,10 @@ from dataclasses import dataclass
 class ResponseMessage:
     message: str
     status_code: int
-    id: int
     data: dict = None
 
 
-@dataclass(init=False)
+@dataclass
 class ResponseBuilder:
     add_message: str
     add_status_code: int
@@ -23,7 +22,6 @@ class ResponseBuilder:
     
     def add_data(self, data: dict):
         self.add_data = data
-        
 
     def build(self):
         return ResponseMessage(

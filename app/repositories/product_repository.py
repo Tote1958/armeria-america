@@ -6,7 +6,7 @@ class ProductRepository(Create, Read, Update, Delete):
     def __init__(self):
         self.__model = Product
     
-    def create(self, product: Product) -> Product:
+    def create(self, product: Product) -> db.model:
         #entity = Product(name = product['name'], caliber = product['caliber'], brand = product['brand'], description = ['description'], type = ['type'], serial_number = ['serial_number'])
         db.session.add(product)
         db.session.commit()

@@ -38,4 +38,17 @@ class ProductRepository(Create, Read, Update, Delete):
         return db.session.query(self.__model).filter(self.__model.id == id).one()
     
     def find_by_name(self, name: str) -> Product:
-        return db.session.query(self.__model).filter(self.__model.name == name)
+        return db.session.query(self.__model).filter(self.__model.name == name)     #.like va o no va?
+    
+    def find_by_caliber(self, caliber: str) -> Product:
+        return db.session.query(self.__model).filter(self.__model.caliber == caliber)
+    
+    def find_by_brand(self, brand: str) -> Product:
+        return db.session.query(self.__model).filter(self.__model.brand == brand)
+    
+    def find_by_type(self, type: str) -> Product:
+        return db.session.query(self.__model).filter(self.__model.type == type)
+    
+    def find_by_serial_number(self, serial_numb: str) -> Product:
+        return db.session.query(self.__model).filter(self.__model.serial_number == serial_numb)
+  

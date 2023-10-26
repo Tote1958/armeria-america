@@ -1,1 +1,4 @@
-py app.py
+@echo off
+flask run
+pause
+exit

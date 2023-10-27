@@ -46,6 +46,26 @@ def find_by_name(name):
 @client.route('/client/email/<string:email>', methods=['GET'])
 def find_by_email(email):
     service = ClientService()
-    response_builder = ResponseBuilder("Usuario encontrado", 100, client_schema.dump(service.find_by_email(email)))
-    # Preguntar si esta bien esta forma, esta forma anda
-    return response_schema.dump((response_builder.build())), 200
+    response = client_schema.dump(service.find_by_email(email))
+    if response:
+        response_builder = ResponseBuilder("Email encontrado", 100, client_schema.dump(service.find_by_email(email)))
+        # Preguntar si esta bien esta forma, esta forma anda
+        return response_schema.dump((response_builder.build())), 200
+    else:
+        response_builder = ResponseBuilder("No se encontro el email", 400, client_schema.dump(service.find_by_email(email)))
+        return response_schema.dump((response_builder.build())), 400
+
+
+@client.route('/client/update/<int:id>', methods=['PUT'])
+def update_client(id):
+    service = ClientService()
+    client = client_schema.load(request.json)
+    return {"client": client_schema.dump(service.update(client, id))}, 200
+
+@client.route('/search', methods=['GET'])
+def search():
+    try:
+        name = request.args.get('name')
+    except:
+        print('error')
+    

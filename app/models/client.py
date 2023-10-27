@@ -9,7 +9,7 @@ class Client(db.Model):
     __dni = db.Column('dni', db.String(250))
     __code = db.Column('code', db.String(250)) 
     __address = db.Column('address', db.String(250))
-    __email = db.Column('email', db.String(250))
+    __email = db.Column('email', db.String(256))
 
     """name: str name of client max char 50
        dni: alfanumerico  """

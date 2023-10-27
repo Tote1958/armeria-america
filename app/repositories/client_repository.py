@@ -31,7 +31,7 @@ class ClientRepository(Create, Read, Update, Delete):
         return list
     
     def find_by_email(self, email: str) -> Client:
-        return db.session.query(self.__model).filter(self.__model.email == email).one() # Ver donde poner el like
+        return db.session.query(self.__model).filter(self.__model.email == email).first() # Ver donde poner el like
 
     
     def find_all(self):

@@ -16,7 +16,7 @@ class ClientService:
         return self.__repo.find_by_name(name)
     
     def find_by_email(self, email) -> Client:
-        return self.__repo.find_by_name(email)
+        return self.__repo.find_by_email(email)
 
     def create(self, entity: Client) -> Client:
         return self.__repo.create(entity)

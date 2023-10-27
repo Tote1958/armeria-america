@@ -1,8 +1,8 @@
-from app.models import Supplier #service va al repository
+from app.models.supplier import Supplier #service va al repository
 from app.repositories.supplier_repository import SupplierRepository
 
 class SupplierService: #van las tareas
-    def __init__(self):
+    def __init__(self): #__init__ es el inicializador de atributos
         self.__repo = SupplierRepository()
     
     def find_by_id(self, id) -> Supplier:

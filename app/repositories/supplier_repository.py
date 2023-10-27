@@ -1,5 +1,5 @@
 from app.models import Supplier #En el repository va la comunicacion con la base de datos
-from app import db
+from app.config.database import db
 from .CRUD import Create, Read, Update, Delete
 # es la ultima capa que esta al final con la base de datos, la que rosa con la base de datos
 
@@ -32,7 +32,8 @@ class SupplierRepository(Read, Update, Create, Delete):
         return supplier
     
     def find_by_name(self, name: str) -> Supplier:
-        return db.session.query(self.__model).filter(self.__model.name == name)
+        list = db.session.query(self.__model).filter(self.__model.name == name).first()
+        return list
     
     def delete(self, id: int):
         entity = self.find_by_id(id)

@@ -31,16 +31,22 @@ def create_supplier(): #anduvo
     supplier = supplier_schema.load(request.json)
     return {"supplier": supplier_schema.dump(service.create(supplier))}, 200
 
-@supplier.route('/suppler/name/<string:name>', methods=['POST'])
+@supplier.route('/supplier/name/<string:name>', methods=['GET'])
 def find_by_name(name):
     service = SupplierService()
     object = service.find_by_name(name)
     result = supplier_schema.dump(object)
     return jsonify(result), 200
 
-@supplier.route('/supplier/email/<string:email>', methods=['POST'])
+@supplier.route('/supplier/email/<string:email>', methods=['GET'])
 def find_by_email(email):
     service = SupplierService()
     object = service.find_by_email(email)
     result = supplier_schema.dump(object)
     return jsonify(result), 200
+
+@supplier.route('/supplier/update/<int:id>', methods=['POST'])
+def update(id):
+    service = SupplierService()
+    supplier = supplier_schema.load(request.json)
+    return {"supplier":supplier_schema.dump(service.update(supplier, id))}, 200

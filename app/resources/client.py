@@ -59,7 +59,7 @@ def find_by_email(email):
 @client.route('/client/update/<int:id>', methods=['PUT'])
 def update_client(id):
     service = ClientService()
-    client = client_schema.load(request.json)
+    client = request.json
     return {"client": client_schema.dump(service.update(client, id))}, 200
 
 @client.route('/search', methods=['GET'])

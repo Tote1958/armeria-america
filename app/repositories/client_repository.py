@@ -16,13 +16,25 @@ class ClientRepository(Create, Read, Update, Delete):
         db.session.commit()
         return dto
     
-    def update(self, client: Client, id: int) -> Client:
+    def update(self, dto, id: int) -> Client:
         entity = self.find_by_id(id)
-        entity.name = client.name
-        entity.email = client.email
-        entity.address = client.address
-        entity.code = client.code
-        db.session.add(entity)
+        try:
+            entity.name = dto['name']
+        except:
+            pass
+        try:
+            entity.email = dto['email']
+        except:
+            pass
+        try:
+            entity.address = dto['address']
+        except:
+            pass
+        try:
+            entity.code = dto['code']
+        except:
+            pass
+
         db.session.commit()
         return entity
 

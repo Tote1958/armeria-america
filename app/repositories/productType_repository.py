@@ -7,10 +7,11 @@ class ProductTypeRepository(Create, Read, Update, Delete):
         self.__model = ProductType
 
     #Create
-    def create(self, productType) -> ProductType:
-        db.session.add(productType)
+    def create(self, dto: ProductType) -> db.model:
+        # entity = ProductType(name=dto['name'], code=dto['code'], description=dto['description'])
+        db.session.add(dto)
         db.session.commit()
-        return productType
+        return dto
 
     #Read
     def find_by_id(self, id: str) -> ProductType:
@@ -28,9 +29,12 @@ class ProductTypeRepository(Create, Read, Update, Delete):
     #Update
     def update(self, productType, id: int) -> ProductType:
         entity = self.find_by_id(id)
-        entity.name = productType.name
-        entity.code = productType.code
-        entity.description = productType.description
+        if productType.name:
+            entity.name = productType.name
+        if productType.code:
+            entity.code = productType.code
+        if productType.description:
+            entity.description = productType.description
         db.session.add(entity)
         db.session.commit()
         return entity

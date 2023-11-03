@@ -1,18 +1,11 @@
+from __future__ import annotations
 from app.config.database import db
 from sqlalchemy.ext.hybrid import hybrid_property
+from dataclasses import dataclass
+from app.models.relations import clients_roles
 
-
-class Base(db.DeclarativeBase):
-    pass
-
-
-association_table = db.Table(
-    "client_role",
-    Base.metadata,
-    db.Column("client_id", db.ForeignKey("client.id"), primary_key=True),
-    db.Column("role_id", db.ForeignKey("client.id"), primary_key=True),
-)
-class Client(db.Model, Base):
+@dataclass
+class Client(db.Model):
     __tablename__ = 'clients'
     __id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
     __name = db.Column('name', db.String(250))
@@ -21,19 +14,19 @@ class Client(db.Model, Base):
     __address = db.Column('address', db.String(250))
     __email = db.Column('email', db.String(256))
 
-    relation = db.relationship(
-        secondary=association_table, back_populates="client"
-    )
+    roles = db.relationship('Role', secondary='clients_roles', back_populates="client")
+
 
 
     """name: str name of client max char 50
        dni: alfanumerico  """
-    def __init__(self, name:str, dni:str, code:str, address:str, email:str):
+""" def __init__(self, name:str, dni:str, code:str, address:str, email:str):
         self.__name = name
         self.__dni = dni
         self.__code = code
         self.__address = address
         self.__email = email
+    
 
     @hybrid_property
     def id(self) -> int:
@@ -88,5 +81,5 @@ class Client(db.Model, Base):
     
     def __eq__(self, value:object) -> bool:
         return self.dni == value.dni
-    
-    
+    """
+

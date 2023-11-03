@@ -1,5 +1,5 @@
 from app import db
-from app.models import Role
+from app.models.role import Role
 
 
 class RoleRepository:

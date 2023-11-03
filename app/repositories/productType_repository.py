@@ -7,7 +7,7 @@ class ProductTypeRepository(Create, Read, Update, Delete):
         self.__model = ProductType
 
     #Create
-    def create(self, dto: ProductType) -> db.model:
+    def create(self, dto: ProductType) -> db.Model:
         # entity = ProductType(name=dto['name'], code=dto['code'], description=dto['description'])
         db.session.add(dto)
         db.session.commit()

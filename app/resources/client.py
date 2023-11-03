@@ -62,8 +62,8 @@ def update_client(id):
     client = request.json
     return {"client": client_schema.dump(service.update(client, id))}, 200
 
-@client.route('/client/update/<int:id>', methods=['DELETE'])
-def update_client(id):
+@client.route('/client/delete/<int:id>', methods=['DELETE'])
+def delete_client(id):
     service = ClientService()
     return {"deleted client": client_schema.dump(service.delete(id))}, 200
 @client.route('/search', methods=['GET'])

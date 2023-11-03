@@ -8,6 +8,19 @@ productType_schema = ProductTypeSchema()
 response_schema = ResponseSchema()
 productType = Blueprint('productType', __name__)
 
+
+#Create
+@productType.route('/productType/create/', methods=['POST'])
+def create_productType():
+    service = ProductTypeService()
+    product = ProductTypeSchema.load(request.json)
+    # response_builder = ResponseBuilder()
+    # response_builder.add_message('Producto creado!!').add_status_code(200).add_data(product_schema.dump(service.find(id)))
+    # return response_schema.dump(response_builder.build()), 200
+    status_code = 200
+    return {'product': productType_schema.dump(service.create(product))}, status_code
+
+#Read
 @productType.route('/productType/', methods=['GET'])
 def index():
     service = ProductTypeService()
@@ -44,12 +57,16 @@ def find_by_code(code):
     resp.status_code = 200
     return resp
 
-@productType.route('/productType/create/', methods=['POST'])
-def create_productType():
+#Update
+@productType.route('/productType/update/<int:id>', methods=['PUT'])
+def update(id):
     service = ProductTypeService()
-    product = ProductTypeSchema.load(request.json)
-    # response_builder = ResponseBuilder()
-    # response_builder.add_message('Producto creado!!').add_status_code(200).add_data(product_schema.dump(service.find(id)))
-    # return response_schema.dump(response_builder.build()), 200
-    status_code = 200
-    return {'product': productType_schema.dump(service.create(product))}, status_code
+    product = request.json
+    return {"productType":productType_schema.dump(service.update(product, id))}, 200
+
+#Delete
+@productType.route('/productType/delete/<int:id>', methods=['DELETE'])
+def delete(id):
+    service = ProductTypeService()
+    service.delete(id)
+    return '', 204

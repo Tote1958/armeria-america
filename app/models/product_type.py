@@ -4,7 +4,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 class ProductType(db.Model):
     __tablename__ = 'product_type' 
-    __id = db.Column('id', db.Integer, primary_key=True, autoincrement=True) # db.Integer es un tipo de dato de SQL
+    __id = db.Column('id', db.Integer, primary_key=True, autoincrement=True) # db.Integer es un tipo de dato de SQL, un numero autoincrementable
     __name = db.Column('name', db.String(250))
     __code = db.Column('code', db.String(250))
     __description = db.Column('description', db.String(250)) 

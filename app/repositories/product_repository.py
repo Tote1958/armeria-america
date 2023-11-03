@@ -14,12 +14,18 @@ class ProductRepository(Create, Read, Update, Delete):
 
     def update(self, product: Product, id: int) -> Product:
         entity = self.find_by_id(id)
-        entity.name = product.name
-        entity.caliber = product.caliber
-        entity.brand = product.brand
-        entity.description = product.description
-        entity.type = product.type
-        entity.serial_number = product.serial_number
+        if product.name:
+            entity.name = product.name
+        if product.caliber:
+            entity.caliber = product.caliber
+        if product.brand:
+            entity.brand = product.brand
+        if product.description:
+            entity.description = product.description
+        if product.type:
+            entity.type = product.type
+        if product.serial_number:
+            entity.serial_number = product.serial_number
         db.session.add(entity)
         db.session.commit()
         return entity 
@@ -38,16 +44,16 @@ class ProductRepository(Create, Read, Update, Delete):
         return db.session.query(self.__model).filter(self.__model.id == id).one()
     
     def find_by_name(self, name: str) -> Product:
-        return db.session.query(self.__model).filter(self.__model.name == name)
+        return db.session.query(self.__model).filter(self.__model.name == name).all()
     
     def find_by_caliber(self, caliber: str) -> Product:
-        return db.session.query(self.__model).filter(self.__model.caliber == caliber)
+        return db.session.query(self.__model).filter(self.__model.caliber == caliber).all()
     
     def find_by_brand(self, brand: str) -> Product:
-        return db.session.query(self.__model).filter(self.__model.brand == brand)
+        return db.session.query(self.__model).filter(self.__model.brand == brand).all()
     
     def find_by_type(self, type: str) -> Product:
-        return db.session.query(self.__model).filter(self.__model.type == type)
+        return db.session.query(self.__model).filter(self.__model.type == type).all()
     
     def find_by_serial_number(self, serial_numb: str) -> Product:
         return db.session.query(self.__model).filter(self.__model.serial_number == serial_numb).one()

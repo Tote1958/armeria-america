@@ -19,7 +19,7 @@ def index():
     return resp
 
 @product.route('/products/id/<int:id>', methods=['GET'])
-def find_by_id(id):
+def find_by_id(id): #anda
     service = ProductService()
     object = service.find_by_id(id)
     product = product_schema.dump(object)
@@ -28,45 +28,45 @@ def find_by_id(id):
     return resp
 
 @product.route('/products/name/<string:name>', methods=['GET'])
-def find_by_name():
+def find_by_name(name): 
     service = ProductService()
-    list = service.find_by_name()
+    list = service.find_by_name(name)
     products = product_schema_many.dump(list)
     resp = jsonify(products)
     resp.status_code = 200
     return resp
 
-@product.route('/products/caliber/<int:caliber>', methods=['GET'])
-def find_by_caliber():
+@product.route('/products/caliber/<string:caliber>', methods=['GET'])
+def find_by_caliber(caliber):
     service = ProductService()
-    list = service.find_by_caliber()
+    list = service.find_by_caliber(caliber)
     products = product_schema_many.dump(list)
     resp = jsonify(products)
     resp.status_code = 200
     return resp
 
 @product.route('/products/brand/<string:brand>', methods=['GET'])
-def find_by_brand():
+def find_by_brand(brand):
     service = ProductService()
-    list = service.find_by_brand()
+    list = service.find_by_brand(brand)
     products = product_schema_many.dump(list)
     resp = jsonify(products)
     resp.status_code = 200
     return resp
 
 @product.route('/products/type/<string:type>', methods=['GET'])
-def find_by_type():
+def find_by_type(type):
     service = ProductService()
-    list = service.find_by_type()
+    list = service.find_by_type(type)
     products = product_schema_many.dump(list)
     resp = jsonify(products)
     resp.status_code = 200
     return resp
 
 @product.route('/products/serial_number/<string:serial_number>', methods=['GET'])
-def find_by_serial_number():
+def find_by_serial_number(serial_numb):
     service = ProductService()
-    list = service.find_by_serial_number()
+    list = service.find_by_serial_number(serial_numb)
     products = product_schema_many.dump(list)
     resp = jsonify(products)
     resp.status_code = 200

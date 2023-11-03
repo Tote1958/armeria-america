@@ -5,7 +5,7 @@ class Product(db.Model):
     __tablename__ = 'products'
     __id = db.Column('id' , db.Integer, primary_key=True, autoincrement=True)
     __name = db.Column('name' , db.String(250), unique=True, index=True)
-    __caliber = db.Column('caliber', db.String(250), index=True)
+    __caliber = db.Column('caliber', db.String(250))
     __brand = db.Column('brand', db.String(250), index=True)
     __description = db.Column('description', db.String(250))
     __type = db.Column('type', db.String(250))

@@ -49,3 +49,8 @@ def create_brand():
     brand = brand_schema.load(request.json)
     return {"brand": brand_schema.dump(service.create(brand))}, 200
 
+@brand.route('/brand/update/<int:id>', methods=['PUT'])
+def update_brand(id):
+    service = BrandService()
+    client = request.json
+    return {"brand": brand_schema.dump(service.update(client, id))}, 200

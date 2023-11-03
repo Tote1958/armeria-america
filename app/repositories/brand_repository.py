@@ -15,20 +15,25 @@ class BrandRepository(Create, Read, Update, Delete):
         db.session.commit()
         return dto
     
-    def update(self, brand: Brand, id: int) -> Brand:
+    def update(self, dto, id: int) -> Brand:
         entity = self.find_by_id(id)
-        entity.name = brand.name
-        entity.origin = brand.origin
-        db.session.add(entity)
+        try:
+            entity.name = dto['name']
+        except:
+            pass
+        try:
+            entity.email = dto['origin']
+        except:
+            pass
         db.session.commit()
         return entity
 
     def find_by_name(self, name: str) -> Brand:
-        list = db.session.query(self.__model).filter(self.__model.name == name).like() # Ver donde poner el like
+        list = db.session.query(self.__model).filter(self.__model.name == name).first() # Ver donde poner el like
         return list
     
     def find_by_origin(self, origin: str) -> Brand:
-        list = db.session.query(self.__model).filter(self.__model.origin == origin).like() # Ver donde poner el like
+        list = db.session.query(self.__model).filter(self.__model.origin == origin).first() # Ver donde poner el like
         return list
     
     def find_all(self):

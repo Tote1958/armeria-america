@@ -21,8 +21,8 @@ class BrandService:
     def create(self, entity: Brand) -> Brand:
         return self.__repo.create(entity)
     
-    def update(self, entity: Brand, id: int) -> Brand:
-        return self.__repo.update(entity, id)
+    def update(self, dto, id: int) -> Brand:
+        return self.__repo.update(dto, id)
     
     def delete(self, id: int) -> Brand:
         return self.__repo.delete(id)

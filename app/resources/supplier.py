@@ -41,12 +41,16 @@ def find_by_name(name):
 @supplier.route('/supplier/email/<string:email>', methods=['GET'])
 def find_by_email(email):
     service = SupplierService()
-    object = service.find_by_email(email)
-    result = supplier_schema.dump(object)
-    return jsonify(result), 200
+    response = supplier_schema.dump(service.find_by_email(email))
+    if response:
+        response_builder = ResponseBuilder("Email encontrado",100, supplier_schema.dump(service.find_by_email(email)))
+        return response_schema.dump((response_builder.build())), 200
+    else:
+        response_builder = ResponseBuilder("No se encontro el email", 400, supplier_schema.dump(service.find_by_email(email)))
+        return response_schema.dump((response_builder.build())), 400
 
-@supplier.route('/supplier/update/<int:id>', methods=['POST'])
+@supplier.route('/supplier/update/<int:id>', methods=['PUT'])
 def update(id):
     service = SupplierService()
-    supplier = supplier_schema.load(request.json)
+    supplier = request.json
     return {"supplier":supplier_schema.dump(service.update(supplier, id))}, 200

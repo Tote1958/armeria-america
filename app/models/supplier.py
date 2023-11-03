@@ -27,11 +27,11 @@ class Supplier(db.Model):
         return self.__id
     
     @id.setter
-    def id(self, id:str):
+    def id(self, id:int):
         self.__id = id
 
     @hybrid_property #seria como get name, agrega funcionalidad mas a un metodo
-    def code(self)->int: #ver si es int o str
+    def code(self)-> str: #ver si es int o str
         return self.__code
     
     @code.setter #seria como set name, el arroba es un decorador, un patron de diseño

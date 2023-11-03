@@ -43,3 +43,30 @@ class SupplierRepository(Read, Update, Create, Delete):
     
     def find_by_email(self, email: str) -> Supplier:
         return db.session.query(self.__model).filter(self.__model.name == email).like() #like busca la concidencia
+    
+    def update(self,dto, id: int) -> Supplier: # data transfer object(dto) = es para pasar objectos
+        entity = self.find_by_id(id)
+        try:
+            entity.name = dto['name']
+        except:
+            pass
+        try:
+            entity.email = dto['email']
+        except:
+            pass
+        try:
+            entity.cuil = dto['cuil']
+        except:
+            pass
+        try:
+            entity.code = dto['code']
+        except:
+            pass
+        db.session.commit()
+        return entity
+    
+    def delete(self, id:int):
+        entity = self.find_by_id(id)
+        db.session.delete(entity)
+        db.session.commit()
+        return entity

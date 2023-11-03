@@ -2,7 +2,17 @@ from app.config.database import db
 from sqlalchemy.ext.hybrid import hybrid_property
 
 
-class Client(db.Model):
+class Base(db.DeclarativeBase):
+    pass
+
+
+association_table = db.Table(
+    "client_role",
+    Base.metadata,
+    db.Column("client_id", db.ForeignKey("client.id"), primary_key=True),
+    db.Column("role_id", db.ForeignKey("client.id"), primary_key=True),
+)
+class Client(db.Model, Base):
     __tablename__ = 'clients'
     __id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
     __name = db.Column('name', db.String(250))
@@ -10,6 +20,11 @@ class Client(db.Model):
     __code = db.Column('code', db.String(250)) 
     __address = db.Column('address', db.String(250))
     __email = db.Column('email', db.String(256))
+
+    relation = db.relationship(
+        secondary=association_table, back_populates="client"
+    )
+
 
     """name: str name of client max char 50
        dni: alfanumerico  """

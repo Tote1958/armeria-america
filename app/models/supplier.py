@@ -1,6 +1,8 @@
 from app.config.database import db
 from sqlalchemy.ext.hybrid import hybrid_property
+from dataclasses import dataclass
 
+# @dataclass
 class Supplier(db.Model):
     __tablename__ ='supplier'
     __id = db.Column('id' , db.Integer, primary_key=True, autoincrement=True)

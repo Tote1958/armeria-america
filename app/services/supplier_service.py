@@ -5,7 +5,7 @@ class SupplierService: #van las tareas
     def __init__(self): #__init__ es el inicializador de atributos
         self.__repo = SupplierRepository()
     
-    def find_by_id(self, id) -> Supplier:
+    def find_by_id(self, id: int) -> Supplier:
         return self.__repo.find_by_id(id)
     
     def find_by_name(self, name) -> Supplier:

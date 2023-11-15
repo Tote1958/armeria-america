@@ -6,13 +6,13 @@ class ProductRepository(Create, Read, Update, Delete):
     def __init__(self):
         self.__model = Product
     
-    def create(self, product: Product) -> db.Model:
+    def create(self, dto: Product) -> db.Model:
         #entity = Product(name = product['name'], caliber = product['caliber'], brand = product['brand'], description = ['description'], type = ['type'], serial_number = ['serial_number'])
-        db.session.add(product)
+        db.session.add(dto)
         db.session.commit()
-        return product
+        return dto
 
-    def update(self, product: Product, id: int) -> Product:
+    def update(self, product: Product, id: int) -> Product: # PREGUNTAR COMO HACER ESTA
         entity = self.find_by_id(id)
         if product.name:
             entity.name = product.name

@@ -12,7 +12,7 @@ class ProductService:
     def find_all(self) -> Product:
         return self.__repo.find_all()
 
-    def find_by_name(self, name) -> Product:
+    def find_by_name(self, name) -> list:
         return self.__repo.find_by_name(name)
 
     def find_by_caliber(self, caliber) -> Product:

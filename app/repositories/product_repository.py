@@ -54,16 +54,16 @@ class ProductRepository(Create, Read, Update, Delete):
     def find_by_id(self, id: str) -> Product:
         return db.session.query(self.__model).filter(self.__model.id == id).one()
     
-    def find_by_name(self, name: str) -> Product:
-        return db.session.query(self.__model).filter(self.__model.name == name).all()
+    def find_by_name(self, name: str) -> list:
+        return db.session.query(self.__model).filter(self.__model.name.like(name)).all()
     
-    def find_by_caliber(self, caliber: str) -> Product:
+    def find_by_caliber(self, caliber: str) -> list:
         return db.session.query(self.__model).filter(self.__model.caliber == caliber).all()
     
-    def find_by_brand(self, brand: str) -> Product:
+    def find_by_brand(self, brand: str) -> list:
         return db.session.query(self.__model).filter(self.__model.brand == brand).all()
     
-    def find_by_type(self, type: str) -> Product:
+    def find_by_type(self, type: str) -> list:
         return db.session.query(self.__model).filter(self.__model.type == type).all()
     
     def find_by_serial_number(self, serial_numb: str) -> Product:

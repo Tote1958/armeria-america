@@ -20,15 +20,17 @@ def index():
 
 @product.route('/products/id/<int:id>', methods=['GET'])
 def find_by_id(id):
-    response_builder = ResponseBuilder("Producto", 100, product_schema.dump(service.find_by_id(id))) # porque 100 y no 200 el status_code??
-    # response_builder.status_code = 200
-    # return response_builder
+    response_builder = ResponseBuilder()
+    response_builder.add_message('Producto encontrado por id.').add_status_code(200).add_data(product_schema.dump(service.find_by_id(id)))
     return response_schema.dump((response_builder.build())), 200
 
-@product.route('/products/name/<string:name>', methods=['GET'])
-def find_by_name(name):
+@product.route('/products/search/', methods=['GET'])
+def find_by_name():
+    name = request.args.get('name')
     list = service.find_by_name(name)
-    response_builder = ResponseBuilder("Producto", 100, product_schema_many.dump(list))
+    response = product_schema_many.dump(list)
+    response_builder = ResponseBuilder()
+    response_builder.add_message('Producto').add_status_code(200).add_data({'products': response})
     return response_schema.dump((response_builder.build())), 200
 
 @product.route('/products/caliber/<string:caliber>', methods=['GET'])

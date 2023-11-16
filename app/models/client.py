@@ -7,12 +7,12 @@ from app.models.relations import clients_roles
 @dataclass
 class Client(db.Model):
     __tablename__ = 'clients'
-    __id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
-    __name = db.Column('name', db.String(250))
-    __dni = db.Column('dni', db.String(250))
-    __code = db.Column('code', db.String(250)) 
-    __address = db.Column('address', db.String(250))
-    __email = db.Column('email', db.String(256))
+    id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column('name', db.String(250))
+    dni = db.Column('dni', db.String(250))
+    code = db.Column('code', db.String(250))
+    address = db.Column('address', db.String(250))
+    email = db.Column('email', db.String(256))
 
     roles = db.relationship('Role', secondary='clients_roles', back_populates="clients")
 

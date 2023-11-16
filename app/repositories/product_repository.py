@@ -12,23 +12,34 @@ class ProductRepository(Create, Read, Update, Delete):
         db.session.commit()
         return dto
 
-    def update(self, product: Product, id: int) -> Product: # PREGUNTAR COMO HACER ESTA
+    def update(self, dto, id: int) -> Product:
         entity = self.find_by_id(id)
-        if product.name:
-            entity.name = product.name
-        if product.caliber:
-            entity.caliber = product.caliber
-        if product.brand:
-            entity.brand = product.brand
-        if product.description:
-            entity.description = product.description
-        if product.type:
-            entity.type = product.type
-        if product.serial_number:
-            entity.serial_number = product.serial_number
-        db.session.add(entity)
+        try:
+            entity.name = dto['name']
+        except:
+            pass
+        try:
+            entity.caliber = dto['caliber']
+        except:
+            pass
+        try:
+            entity.brand = dto['brand']
+        except:
+            pass
+        try:
+            entity.description = dto['description']
+        except:
+            pass
+        try:
+            entity.type = dto ['type']
+        except:
+            pass
+        try:
+            entity.serial_number = dto ['serial_number']
+        except:
+            pass
         db.session.commit()
-        return entity 
+        return entity
     
     def delete(self, id: int) -> Product:
         entity = self.find_by_id(id)

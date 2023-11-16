@@ -33,8 +33,8 @@ class ProductService:
     def update(self, entity: Product, id:int) -> Product:
         return self.__repo.update(entity, id)
     
-    def delete(self, entity: Product, id:int) -> Product:
-        return self.__repo.update(entity, id)
+    def delete(self, id:int) -> Product:
+        return self.__repo.delete(id)
 
     '''def find_all(self) -> []:
         list_product = []

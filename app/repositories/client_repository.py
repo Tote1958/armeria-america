@@ -37,9 +37,9 @@ class ClientRepository(Create, Read, Update, Delete):
         db.session.commit()
         return entity
 
-    def find_by_name(self, name: str) -> Client:
-        list = db.session.query(self.__model).filter(self.__model.name == name).first() # Ver donde poner el like
-        return list
+    def find_by_name(self, name: str) -> list:
+        clients = db.session.query(self.__model).filter(self.__model.name.like(name)).all()  # Ver donde poner el like
+        return clients
     
     def find_by_email(self, email: str) -> Client:
         return db.session.query(self.__model).filter(self.__model.email == email).first() # Ver donde poner el like

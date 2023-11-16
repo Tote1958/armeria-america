@@ -12,10 +12,10 @@ class BrandService:
     def find_by_id(self, id) -> Brand:
         return self.__repo.find_by_id(id)
 
-    def find_by_name(self, name) -> Brand:
+    def find_by_name(self, name) -> list:
         return self.__repo.find_by_name(name)
     
-    def find_by_origin(self, origin) -> Brand:
+    def find_by_origin(self, origin) -> list:
         return self.__repo.find_by_origin(origin)
 
     def create(self, entity: Brand) -> Brand:

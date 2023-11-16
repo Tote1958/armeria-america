@@ -12,7 +12,7 @@ class ClientService:
     def find_by_id(self, id: int) -> Client:
         return self.__repo.find_by_id(id)
 
-    def find_by_name(self, name) -> Client:
+    def find_by_name(self, name) -> list:
         return self.__repo.find_by_name(name)
     
     def find_by_email(self, email) -> Client:

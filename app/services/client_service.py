@@ -27,8 +27,6 @@ class ClientService:
     def delete(self, id: int) -> Client:
         return self.__repo.delete(id)
 
-    def register_client(self, name, ):
-        pass
     
 
 """    def test_create(self) -> []:

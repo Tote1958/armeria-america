@@ -4,3 +4,4 @@ from .product_type import ProductType
 from .supplier import Supplier
 from .brand import Brand
 from .relations import clients_roles
+from .role import Role

@@ -14,7 +14,7 @@ class Client(db.Model):
     __address = db.Column('address', db.String(250))
     __email = db.Column('email', db.String(256))
 
-    roles = db.relationship('Role', secondary='clients_roles', back_populates="client")
+    roles = db.relationship('Role', secondary='clients_roles', back_populates="clients")
 
 
 

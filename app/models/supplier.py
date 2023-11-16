@@ -6,7 +6,7 @@ from dataclasses import dataclass
 class Supplier(db.Model):
     __tablename__ ='supplier'
     __id = db.Column('id' , db.Integer, primary_key=True, autoincrement=True)
-    __name = db.Column('name' , db.String(250), unique=True)
+    __name = db.Column('name' , db.String(250))
     __cuil= db.Column('cuil', db.String(250), unique=True)
     __email= db.Column('email', db.String(250), unique=True)
     __code= db.Column('code', db.String(250), unique=True) 
@@ -46,7 +46,7 @@ class Supplier(db.Model):
         return self.__name
     
     @name.setter
-    def code (self, name:str):
+    def name (self, name:str):
         self.__name = name
 
 

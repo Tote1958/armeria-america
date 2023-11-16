@@ -20,8 +20,8 @@ class SupplierService: #van las tareas
     def create(self, entity: Supplier) -> Supplier:
         return self.__repo.create(entity)
     
-    def update(self, entity: Supplier, id:int) -> Supplier:
-        return self.__repo.update(entity, id)
+    def update(self, dto: Supplier, id:int) -> Supplier:
+        return self.__repo.update(dto, id)
     
     def delete(self, id:int) -> Supplier:
         return self.__repo.delete(id)

@@ -21,7 +21,7 @@ class SupplierRepository(Read, Update, Create, Delete):
         return supplier
     
     def find_by_name(self, name: str) -> Supplier:
-        list = db.session.query(self.__model).filter(self.__model.name == name).first()
+        list = db.session.query(self.__model).filter(self.__model.name == name).all()
         return list
     
     def delete(self, id: int):
@@ -31,24 +31,24 @@ class SupplierRepository(Read, Update, Create, Delete):
         return entity
     
     def find_by_email(self, email: str) -> Supplier:
-        return db.session.query(self.__model).filter(self.__model.name == email).like() #like busca la concidencia
+        return db.session.query(self.__model).filter(self.__model.email == email).first() 
     
     def update(self,dto, id: int) -> Supplier: # data transfer object(dto) = es para pasar objectos
         entity = self.find_by_id(id)
         try:
-            entity.name = dto['name']
+            entity.name = dto["name"]
         except:
             pass
         try:
-            entity.email = dto['email']
+            entity.email = dto["email"]
         except:
             pass
         try:
-            entity.cuil = dto['cuil']
+            entity.cuil = dto["cuil"]
         except:
             pass
         try:
-            entity.code = dto['code']
+            entity.code = dto["code"]
         except:
             pass
         db.session.commit()

@@ -27,15 +27,20 @@ class ProductTypeRepository(Create, Read, Update, Delete):
         return db.session.query(self.__model).all()
     
     #Update
-    def update(self, productType, id: int) -> ProductType:
+    def update(self, dto, id: int) -> ProductType:
         entity = self.find_by_id(id)
-        if productType.name:
-            entity.name = productType.name
-        if productType.code:
-            entity.code = productType.code
-        if productType.description:
-            entity.description = productType.description
-        db.session.add(entity)
+        try:
+           entity.name = dto['name']
+        except:
+            pass
+        try:
+            entity.code = dto['code']
+        except:
+            pass
+        try:
+            entity.description = dto['description']
+        except:
+            pass
         db.session.commit()
         return entity
     

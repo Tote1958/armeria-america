@@ -3,6 +3,7 @@ from app.services.command import TareaCommand
 class OrderService(TareaCommand):
 
     def __init__(self):
+        #TODO: configuración de servidor de correo
         pass
 
     def execute(self, model):

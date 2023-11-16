@@ -34,5 +34,5 @@ class ProductTypeService:
         return self.__repo.update(entity, id)
     
     #Delete
-    def delete(self, entity: ProductType, id: int) -> ProductType:
-        return self.__repo.update(entity, id)
+    def delete(self, id: int):
+        return self.__repo.delete(id)

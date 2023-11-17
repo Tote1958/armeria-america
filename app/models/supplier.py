@@ -24,11 +24,11 @@ class Supplier(db.Model):
         self.__email = email
         self.__code = code
 
-    @hybrid_property
+    @hybrid_property #lo encapsula en un atributo, el get lo pide para leer
     def id(self)->int:
         return self.__id
     
-    @id.setter
+    @id.setter # es cuando se crea el objeto
     def id(self, id:int):
         self.__id = id
 
@@ -45,7 +45,7 @@ class Supplier(db.Model):
     def name(self)->str:
         return self.__name
     
-    @name.setter
+    @name.setter #le pasamos el valor del atributo al que esta en la clase
     def name (self, name:str):
         self.__name = name
 
@@ -68,9 +68,9 @@ class Supplier(db.Model):
         self.__email = email
 
 
-    def __repr__(self) -> str: #  despues de -> es el tipo de dato que devuelve
+    def __repr__(self) -> str: #  da la informacion de cada objeto
         return f'Supplier: \n Nombre:{self.name}, \n Cuil:{self.cuil}, \n Email:{self.email}, \n Codigo:{self.code}'
     
-    def __eq__(self,__value:object) -> bool: #comparamos si dos objetos son iguales
+    def __eq__(self,__value:object) -> bool: #comparamos si dos objetos son iguales, para no agregar dos veces el mismo objeto
         return self.codigo == __value.code and self.name == __value.name
     

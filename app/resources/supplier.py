@@ -27,16 +27,16 @@ def find_by_id(id): #anduvo
 
 @supplier.route('/supplier/create', methods=['POST'])
 def create_supplier(): #anduvo
-    supplier = supplier_schema.load(request.json)
-    return {"supplier": supplier_schema.dump(service.create(supplier))}, 200
+    supplier = supplier_schema.load(request.json) #desempaquetamos
+    return {"supplier": supplier_schema.dump(service.create(supplier))}, 200 #dump: convierte la lista de objetos en un diccerionario
 
 @supplier.route('/supplier/search/', methods=['GET'])
 def find_by_name(): #anduvo
-     name = request.args.get('name')
+     name = request.args.get('name') #obtiene el argumento del request name, es la peticion
      response_builder = ResponseBuilder()
      response = supplier_schema_many.dump(service.find_by_name(name))
      if response:
-         response_builder.add_message("Nombre encontrado").add_status_code(100).add_data({'supplier': response})
+         response_builder.add_message("Nombre encontrado").add_status_code(100).add_data({'supplier': response}) #response es un diccionario, trae todos los datos de cada uno
          return response_schema.dump((response_builder.build())), 200
      else:
          response_builder.add_message("No se encontro el nombre").add_status_code(400).add_data(response)
@@ -57,7 +57,7 @@ def find_by_email(email): #anduvo
 @supplier.route('/supplier/update/<int:id>', methods=['PUT'])
 def update(id): #anduvo
     response_builder = ResponseBuilder()
-    supplier = request.json
+    supplier = request.json #lo desempaquetas
     return {"supplier":supplier_schema.dump(service.update(supplier, id))}, 200
 
 @supplier.route('/supplier/delete/<int:id>', methods=['DELETE'])

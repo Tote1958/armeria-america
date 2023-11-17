@@ -7,7 +7,6 @@ from ..models.response_message import ResponseBuilder
 productType_schema_many = ProductTypeSchema(many=True) # many=True significa que se espera una lista de objetos
 productType_schema = ProductTypeSchema()
 response_schema = ResponseSchema()
-response_builder = ResponseBuilder()
 productType = Blueprint('productType', __name__)
 service = ProductTypeService()
 
@@ -15,6 +14,7 @@ service = ProductTypeService()
 #Create
 @productType.route('/productType/create/', methods=['POST'])
 def create_productType():
+    response_builder = ResponseBuilder()
     product = productType_schema.load(request.json)
     response_builder.add_message('Producto creado!.').add_status_code(200).add_data(productType_schema.dump(service.create(product)))
     return response_schema.dump(response_builder.build()), 200
@@ -32,6 +32,7 @@ def index():
 
 @productType.route('/productType/id/<int:id>', methods=['GET'])
 def find_by_id(id):
+    response_builder = ResponseBuilder()
     response_builder.add_message('Producto encontrado por id.').add_status_code(200).add_data(productType_schema.dump(service.find_by_id(id)))
     return response_schema.dump(response_builder.build()), 200
     # object = service.find_by_id(id)
@@ -42,11 +43,13 @@ def find_by_id(id):
 
 @productType.route('/productType/name/<string:name>', methods=['GET'])
 def find_by_name(name):
+    response_builder = ResponseBuilder()
     response_builder.add_message('Producto encontrado por nombre.').add_status_code(200).add_data(productType_schema.dump(service.find_by_id(name)))
     return response_schema.dump(response_builder.build()), 200
 
 @productType.route('/productType/code/<string:code>', methods=['GET'])
 def find_by_code(code):
+    response_builder = ResponseBuilder()
     response_builder.add_message('Producto encontrado por codigo.').add_status_code(200).add_data(productType_schema.dump(service.find_by_id(code)))
     return response_schema.dump(response_builder.build()), 200
  
@@ -59,5 +62,6 @@ def update(id):
 #Delete
 @productType.route('/productType/delete/id/<int:id>', methods=['DELETE'])
 def delete(id):
+    response_builder = ResponseBuilder()
     response_builder.add_message('Producto eliminado.').add_status_code(200).add_data(productType_schema.dump(service.delete(id)))
     return response_schema.dump(response_builder.build()), 200

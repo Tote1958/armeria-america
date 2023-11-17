@@ -54,10 +54,12 @@ def find_by_email(email): #anduvo
 
 @supplier.route('/supplier/update/<int:id>', methods=['PUT'])
 def update(id): #anduvo
+    response_builder = ResponseBuilder()
     supplier = request.json
     return {"supplier":supplier_schema.dump(service.update(supplier, id))}, 200
 
 @supplier.route('/supplier/delete/<int:id>', methods=['DELETE'])
 def delete_supplier(id): #anduvo
-    service = SupplierService()
-    return {"delete supplier": supplier_schema.dump(service.delete(id))}, 200                
+    response_builder = ResponseBuilder()
+    response_builder.add_message('Proveedor eliminado').add_status_code(200).add_data(supplier_schema.dump(service.delete(id)))
+    return response_schema.dump(response_builder.build()), 200             

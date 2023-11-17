@@ -35,7 +35,7 @@ class Product(db.Model):
     def id(self, id:int):
         self.__id = id
 
-    @hybrid_property # Es un decorador, hace un patron de diseño, le agrega funcionalidad al método en este caso, lo encapsula en un atributo, puede estar arriba de una clase o arriba de 
+    @hybrid_property # Es un decorador, hace un patron de diseño, le agrega funcionalidad al método en este caso, lo encapsula en un atributo, puede estar arriba de una clase
     def name(self)->str: # Sería el get name
         return self.__name
     

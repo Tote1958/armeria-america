@@ -63,14 +63,15 @@ def find_by_type():
 @product.route('/products/serial_number/<string:serial_number>', methods=['GET'])
 def find_by_serial_number(serial_numb):
     response_builder = ResponseBuilder()
-    response_builder.add_message('Producto encontrado por id.').add_status_code(200).add_data(product_schema.dump(service.find_by_serial_number(serial_numb)))
+    response = product_schema.dump(service.find_by_serial_number(serial_numb))
+    response_builder.add_message('Producto encontrado por id.').add_status_code(200).add_data(response)
     return response_schema.dump((response_builder.build())), 200
 
 @product.route('/products/create', methods=['POST'])
 def create_product():
     product = product_schema.load(request.json)
     # response_builder = ResponseBuilder()
-    # response_builder.add_message('Producto creado!!').add_status_code(200).add_data(product_schema.dump(service.find(id)))
+    # response_builder.add_message('Producto creado!!').add_status_code(200).add_data(product_schema.dump(service.create(id)))
     # return response_schema.dump(response_builder.build()), 200
     status_code = 200
     return {'product': product_schema.dump(service.create(product))}, status_code
@@ -82,7 +83,6 @@ def update_product(id):
 
 @product.route('/products/delete/<int:id>', methods=['DELETE'])
 def delete_product(id):
-    # return {"delete supplier": product_schema.dump(service.delete(id))}, 200 
     response_builder = ResponseBuilder()
     response_builder.add_message('Producto eliminado.').add_status_code(200).add_data(product_schema.dump(service.delete(id)))
     return response_schema.dump(response_builder.build()), 200

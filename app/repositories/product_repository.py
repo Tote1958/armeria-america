@@ -48,7 +48,6 @@ class ProductRepository(Create, Read, Update, Delete):
         return entity
     
     def find_all(self) -> Product:
-        # return super().find_all()
         return db.session.query(self.__model).all()
 
     def find_by_id(self, id: str) -> Product:
@@ -67,5 +66,5 @@ class ProductRepository(Create, Read, Update, Delete):
         return db.session.query(self.__model).filter(self.__model.type == type).all()
     
     def find_by_serial_number(self, serial_numb: str) -> Product:
-        return db.session.query(self.__model).filter(self.__model.serial_number == serial_numb).one()
+        return db.session.query(self.__model).filter(self.__model.serial_number == serial_numb).first()
   

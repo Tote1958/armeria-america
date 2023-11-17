@@ -33,28 +33,37 @@ def find_by_name():
     response_builder.add_message('Producto').add_status_code(200).add_data({'products': response})
     return response_schema.dump((response_builder.build())), 200
 
-@product.route('/products/caliber/<string:caliber>', methods=['GET'])
-def find_by_caliber(caliber):
+@product.route('/products/caliber/', methods=['GET'])
+def find_by_caliber():
+    caliber = request.args.get('caliber')
     list = service.find_by_caliber(caliber)
-    response_builder = ResponseBuilder("Calibre", 100, product_schema_many.dump(list))
+    response = product_schema_many.dump(list)
+    response_builder = ResponseBuilder()
+    response_builder.add_message("Calibre").add_status_code(100).add_data({'products': response})
     return response_schema.dump((response_builder.build())), 200
 
-@product.route('/products/brand/<string:brand>', methods=['GET'])
-def find_by_brand(brand):
+@product.route('/products/brand/', methods=['GET'])
+def find_by_brand():
+    brand = request.args.get('brand')
     list = service.find_by_brand(brand)
-    response_builder = ResponseBuilder("Marca", 100, product_schema_many.dump(list))
+    response = product_schema_many.dump(list)
+    response_builder = ResponseBuilder()
+    response_builder.add_message("Marca").add_status_code(100).add_data({'products': response})
     return response_schema.dump((response_builder.build())), 200
 
-@product.route('/products/type/<string:type>', methods=['GET'])
-def find_by_type(type):
+@product.route('/products/type/', methods=['GET'])
+def find_by_type():
+    type = request.args.get('type')
     list = service.find_by_type(type)
-    response_builder = ResponseBuilder("Tipo", 100, product_schema_many.dump(list))
+    response = product_schema_many.dump(list)
+    response_builder = ResponseBuilder()
+    response_builder.add_message("Tipo").add_status_code(100).add_data({'products': response})
     return response_schema.dump((response_builder.build())), 200
 
 @product.route('/products/serial_number/<string:serial_number>', methods=['GET'])
 def find_by_serial_number(serial_numb):
-    list = service.find_by_serial_number(serial_numb)
-    response_builder = ResponseBuilder("Numero de serie", 100, product_schema_many.dump(list))
+    response_builder = ResponseBuilder()
+    response_builder.add_message('Producto encontrado por id.').add_status_code(200).add_data(product_schema.dump(service.find_by_serial_number(serial_numb)))
     return response_schema.dump((response_builder.build())), 200
 
 @product.route('/products/create', methods=['POST'])

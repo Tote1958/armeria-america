@@ -15,13 +15,13 @@ class ProductService:
     def find_by_name(self, name) -> list:
         return self.__repo.find_by_name(name)
 
-    def find_by_caliber(self, caliber) -> Product:
+    def find_by_caliber(self, caliber) -> list:
         return self.__repo.find_by_caliber(caliber)
     
-    def find_by_brand(self, brand) -> Product:
+    def find_by_brand(self, brand) -> list:
         return self.__repo.find_by_brand(brand)
     
-    def find_by_type(self, type) -> Product:
+    def find_by_type(self, type) -> list:
         return self.__repo.find_by_type(type)
     
     def find_by_serial_number(self, serial_number) -> Product:

@@ -22,7 +22,7 @@ class BrandRepository(Create, Read, Update, Delete):
         except:
             pass
         try:
-            entity.email = dto['origin']
+            entity.origin = dto['origin']
         except:
             pass
         db.session.commit()

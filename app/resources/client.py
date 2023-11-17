@@ -81,6 +81,6 @@ def update_client(id):
 @client.route('/client/delete/<int:id>', methods=['DELETE'])
 def delete_client(id):
     response_builder = ResponseBuilder()
-    response_builder.add_message('Producto eliminado.').add_status_code(200).add_data(client_schema.dump(service.delete(id)))
+    response_builder.add_message('Usuario eliminado.').add_status_code(200).add_data(client_schema.dump(service.delete(id)))
     return response_schema.dump(response_builder.build()), 200
     

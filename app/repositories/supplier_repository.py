@@ -20,8 +20,8 @@ class SupplierRepository(Read, Update, Create, Delete):
         db.session.commit()
         return supplier
     
-    def find_by_name(self, name: str) -> Supplier:
-        list = db.session.query(self.__model).filter(self.__model.name == name).all()
+    def find_by_name(self, name: str) -> list:
+        list = db.session.query(self.__model).filter(self.__model.name.like(name)).all()
         return list
     
     def delete(self, id: int):

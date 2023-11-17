@@ -31,12 +31,19 @@ def create_supplier(): #anduvo
     supplier = supplier_schema.load(request.json)
     return {"supplier": supplier_schema.dump(service.create(supplier))}, 200
 
-@supplier.route('/supplier/name/<string:name>', methods=['GET'])
-def find_by_name(name): #anduvo
-    service = SupplierService()
-    object = service.find_by_name(name)
-    result = supplier_schema.dump(object)
-    return jsonify(result), 200
+@supplier.route('/supplier/search/', methods=['GET'])
+def find_by_name(): #anduvo
+     service = SupplierService()
+     name = request.args.get('name')
+     response_builder = ResponseBuilder()
+     response = supplier_schema_many.dump(service.find_by_name(name))
+     if response:
+         response_builder.add_message("Nombre encontrado").add_status_code(100).add_data({'supplier': response})
+         return response_schema.dump((response_builder.build())), 200
+     else:
+         response_builder.add_message("No se encontro el nombre").add_status_code(400).add_data(response)
+         return response_schema.dump((response_builder.build())), 400
+    
 
 @supplier.route('/supplier/email/<string:email>', methods=['GET'])
 def find_by_email(email): #anduvo
@@ -50,7 +57,7 @@ def find_by_email(email): #anduvo
         return response_schema.dump((response_builder.build())), 400
 
 @supplier.route('/supplier/update/<int:id>', methods=['PUT'])
-def update(id): 
+def update(id): #anduvo
     service = SupplierService()
     supplier = request.json
     return {"supplier":supplier_schema.dump(service.update(supplier, id))}, 200

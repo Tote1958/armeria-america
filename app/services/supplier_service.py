@@ -8,7 +8,7 @@ class SupplierService: #van las tareas
     def find_by_id(self, id: int) -> Supplier:
         return self.__repo.find_by_id(id)
     
-    def find_by_name(self, name) -> Supplier:
+    def find_by_name(self, name) -> list:
         return self.__repo.find_by_name(name)
     
     def find_by_email(self, email) -> Supplier:
@@ -20,7 +20,7 @@ class SupplierService: #van las tareas
     def create(self, entity: Supplier) -> Supplier:
         return self.__repo.create(entity)
     
-    def update(self, dto: Supplier, id:int) -> Supplier:
+    def update(self, dto, id:int) -> Supplier:
         return self.__repo.update(dto, id)
     
     def delete(self, id:int) -> Supplier:

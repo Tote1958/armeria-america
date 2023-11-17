@@ -14,14 +14,15 @@ supplier = Blueprint('supplier', __name__)
 @supplier.route('/supplier/', methods=['GET'])
 def index(): #anduvo
     list = service.find_all()
-    result = supplier_schema_many.dump(list)
-    resp = jsonify(result)
+    result = supplier_schema_many.dump(list) #dump: encapsula
+    resp = jsonify(result) #jsonify: lo convierte en json
     resp.status_code = 200
     return resp
 
 @supplier.route('/supplier/id/<int:id>', methods=['GET']) #en <int:id> pongo el id que quiero buscar
 def find_by_id(id): #anduvo
-    response_builder = ResponseBuilder("Usuario encontrado", 100, supplier_schema.dump(service.find_by_id(id)))
+    response_builder = ResponseBuilder()
+    response_builder.add_message('Proveedor encontrado por id').add_status_code(200).add_data(supplier_schema.dump(service.find_by_id(id)))
     return response_schema.dump((response_builder.build())), 200
 
 @supplier.route('/supplier/create', methods=['POST'])
@@ -44,12 +45,13 @@ def find_by_name(): #anduvo
 
 @supplier.route('/supplier/email/<string:email>', methods=['GET'])
 def find_by_email(email): #anduvo
+    response_builder = ResponseBuilder()
     response = supplier_schema.dump(service.find_by_email(email))
     if response:
-        response_builder = ResponseBuilder("Email encontrado",100, supplier_schema.dump(service.find_by_email(email)))
+        response_builder.add_message("Email encontrado").add_status_code(200).add_data(response)
         return response_schema.dump((response_builder.build())), 200
     else:
-        response_builder = ResponseBuilder("No se encontro el email", 400, supplier_schema.dump(service.find_by_email(email)))
+        response_builder.add_message("No email encontrado").add_status_code(400).add_data(response)
         return response_schema.dump((response_builder.build())), 400
 
 @supplier.route('/supplier/update/<int:id>', methods=['PUT'])

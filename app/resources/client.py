@@ -51,8 +51,6 @@ def find_by_name():
 @client.route('/client/email/<string:email>', methods=['GET'])
 def find_by_email(email):
     response_builder = ResponseBuilder()
-    name = request.json['name']
-
     response = client_schema.dump(service.find_by_email(email))
     if response:
         response_builder.add_message("Email encontrado").add_status_code(100).add_data(

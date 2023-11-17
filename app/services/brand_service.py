@@ -14,9 +14,6 @@ class BrandService:
 
     def find_by_name(self, name) -> list:
         return self.__repo.find_by_name(name)
-    
-    def find_by_origin(self, origin) -> list:
-        return self.__repo.find_by_origin(origin)
 
     def create(self, entity: Brand) -> Brand:
         return self.__repo.create(entity)

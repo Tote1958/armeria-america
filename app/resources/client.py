@@ -22,15 +22,24 @@ def index():
 
 @client.route('/client/id/<int:id>', methods=['GET'])
 def find_by_id(id):
-    response_builder = ResponseBuilder("Usuario encontrado", 100, client_schema.dump(service.find_by_id(id)))
-    # Preguntar si esta bien esta forma, esta forma anda
-    return response_schema.dump((response_builder.build())), 200
+    response_builder = ResponseBuilder()
+    response = client_schema.dump(service.find_by_id(id))
+    if response:
+        response_builder.add_message("Usuario encontrado").add_status_code(100).add_data(response)
+        return response_schema.dump((response_builder.build())), 200
+    else:
+        response_builder.add_message("No se encontro el usuario").add_status_code(400).add_data(
+            response)
+        return response_schema.dump((response_builder.build())), 400
+
 
 
 @client.route('/client/create/', methods=['POST'])
 def create_client():
+    response_builder = ResponseBuilder()
     client = client_schema.load(request.json)
-    return {"client": client_schema.dump(service.create(client))}, 200
+    response_builder.add_message("Usuario creado").add_status_code(100).add_data(client_schema.dump(service.create(client)))
+    return response_schema.dump((response_builder.build())), 200
 
 
 @client.route('/client/search/', methods=['GET'])
@@ -45,7 +54,6 @@ def find_by_name():
         response_builder.add_message("No se encontro el nombre").add_status_code(400).add_data(
             response)
         return response_schema.dump((response_builder.build())), 400
-
 
 
 @client.route('/client/email/<string:email>', methods=['GET'])
@@ -67,7 +75,8 @@ def find_by_email(email):
 def update_client(id):
     response_builder = ResponseBuilder()
     client = request.json
-    return {"client": client_schema.dump(service.update(client, id))}, 200
+    response_builder.add_message("Usuario modificado").add_status_code(100).add_data(client_schema.dump(service.update(client, id)))
+    return response_schema.dump((response_builder.build())), 200
 
 @client.route('/client/delete/<int:id>', methods=['DELETE'])
 def delete_client(id):

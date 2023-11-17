@@ -28,13 +28,10 @@ class BrandRepository(Create, Read, Update, Delete):
         db.session.commit()
         return entity
 
-    def find_by_name(self, name: str) -> Brand:
-        list = db.session.query(self.__model).filter(self.__model.name == name).first() # Ver donde poner el like
-        return list
-    
-    def find_by_origin(self, origin: str) -> Brand:
-        list = db.session.query(self.__model).filter(self.__model.origin == origin).first() # Ver donde poner el like
-        return list
+    def find_by_name(self, name: str) -> list:
+        brands = db.session.query(self.__model).filter(self.__model.name.like(name)).all()
+        return brands
+
     
     def find_all(self):
         return db.session.query(self.__model).all()

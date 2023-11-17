@@ -13,7 +13,6 @@ brand = Blueprint('brand', __name__)
 
 @brand.route('/brand/', methods=['GET'])
 def index():
-    service = BrandService()
     list = service.find_all()
     result = brand_schema_many.dump(list)
     resp = jsonify(result)
@@ -23,9 +22,15 @@ def index():
 
 @brand.route('/brand/id/<int:id>', methods=['GET'])
 def find_by_id(id):
-
-    object = service.find_by_id(id)
-    result = brand_schema.dump(object)
+    response_builder = ResponseBuilder()
+    response = brand_schema.dump(service.find_by_id(id))
+    if response:
+        response_builder.add_message("Marca encontrado").add_status_code(100).add_data(response)
+        return response_schema.dump((response_builder.build())), 200
+    else:
+        response_builder.add_message("No se encontro la marca").add_status_code(400).add_data(
+            response)
+        return response_schema.dump((response_builder.build())), 400
     resp = jsonify(result)
     resp.status_code = 200
     return resp
@@ -36,29 +41,30 @@ def find_by_name():
     response_builder = ResponseBuilder()
     response = brand_schema_many.dump(service.find_by_name(name))
     if response:
-        response_builder.add_message("Nombre encontrado").add_status_code(100).add_data({'brands': response})
+        response_builder.add_message("Nombre de la marca encontrado").add_status_code(100).add_data({'brands': response})
         return response_schema.dump((response_builder.build())), 200
     else:
-        response_builder.add_message("No se encontro el nombre").add_status_code(400).add_data(
+        response_builder.add_message("No se encontro el nombre de la marca").add_status_code(400).add_data(
             response)
         return response_schema.dump((response_builder.build())), 400
 
 
-@brand.route('/brand/origin/<string:name>', methods=['GET'])
-def find_by_origin(origin):
-    service = BrandService()
-    object = service.find_by_origin(origin)
-    result = brand_schema.dump(object)
-    return jsonify(result), 200
-
 @brand.route('/brand/create/', methods=['POST'])
 def create_brand():
-    service = BrandService()
+    response_builder = ResponseBuilder()
     brand = brand_schema.load(request.json)
-    return {"brand": brand_schema.dump(service.create(brand))}, 200
+    response_builder.add_message("Marca creada").add_status_code(100).add_data(brand_schema.dump(service.create(brand)))
+    return response_schema.dump((response_builder.build())), 200
 
 @brand.route('/brand/update/<int:id>', methods=['PUT'])
 def update_brand(id):
-    service = BrandService()
-    client = request.json
-    return {"brand": brand_schema.dump(service.update(client, id))}, 200
+    response_builder = ResponseBuilder()
+    brand = request.json
+    response_builder.add_message("Marca creada").add_status_code(100).add_data(brand_schema.dump(service.update(brand, id)))
+    return response_schema.dump((response_builder.build())), 200
+
+@brand.route('/brand/delete/<int:id>', methods=['DELETE'])
+def delete_brand(id):
+    response_builder = ResponseBuilder()
+    response_builder.add_message('Marca eliminada.').add_status_code(200).add_data(brand_schema.dump(service.delete(id)))
+    return response_schema.dump(response_builder.build()), 200

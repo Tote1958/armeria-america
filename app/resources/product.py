@@ -61,9 +61,9 @@ def find_by_type():
     return response_schema.dump((response_builder.build())), 200
 
 @product.route('/products/serial_number/<string:serial_number>', methods=['GET'])
-def find_by_serial_number(serial_numb):
+def find_by_serial_number(serial_number):
     response_builder = ResponseBuilder()
-    response = product_schema.dump(service.find_by_serial_number(serial_numb))
+    response = product_schema.dump(service.find_by_serial_number(serial_number))
     response_builder.add_message('Producto encontrado por id.').add_status_code(200).add_data(response)
     return response_schema.dump((response_builder.build())), 200
 

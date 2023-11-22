@@ -11,7 +11,7 @@ class ProductSchema(Schema):
     serial_number = fields.String(required=True, validate=validate.Length(min=1, max=25))
     
     '''
-    Esta clase se adapta los modelos a json
+    Esta clase adapta los modelos a json
     '''
     @post_load
     def make_product(self, data, **kwargs):

@@ -8,17 +8,24 @@ from dataclasses import dataclass
 class Client(db.Model):
     __tablename__ = 'clients'
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column('name', db.String(250))
-    dni = db.Column('dni', db.String(250))
-    code = db.Column('code', db.String(250))
-    address = db.Column('address', db.String(250))
-    email = db.Column('email', db.String(256))
+    name = db.Column('name', db.String(105))
+    dni = db.Column('dni', db.String(9))
+    code = db.Column('code', db.String(256))
+    address = db.Column('address', db.String(8))
+    email = db.Column('email', db.String(105))
+
+    """
+    name: str name of supplier max char 105
+    dni: str cuil of supplier max char 250
+    email: str email of supplier max char 250
+    code: str code of supplier max char 256
+    address: str addres of supplier max char 8
+    """
 
 
 
 
-    """name: str name of client max char 50
-       dni: alfanumerico  """
+
 """ def __init__(self, name:str, dni:str, code:str, address:str, email:str):
         self.__name = name
         self.__dni = dni

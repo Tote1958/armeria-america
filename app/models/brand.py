@@ -5,11 +5,13 @@ from sqlalchemy.ext.hybrid import hybrid_property
 class Brand(db.Model):
     __tablename__ = 'brands'
     __id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
-    __name = db.Column('name', db.String(250))
-    __origin = db.Column('origin', db.String(250))
+    __name = db.Column('name', db.String(105))
+    __origin = db.Column('origin', db.String(105))
 
-    """name: str name of the brand max char 100
-       origin: str origin of the brand max char 100  """
+    """
+    name: str name of the brand max char 105
+    origin: str origin of the brand max char 105  
+    """
     def __init__(self, name:str, origin:str):
         self.__name = name
         self.__origin = origin

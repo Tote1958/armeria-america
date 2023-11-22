@@ -18,22 +18,8 @@ class ClientRepository(Create, Read, Update, Delete):
     
     def update(self, dto, id: int) -> Client:
         entity = self.find_by_id(id)
-        try:
-            entity.name = dto['name']
-        except:
-            pass
-        try:
-            entity.email = dto['email']
-        except:
-            pass
-        try:
-            entity.address = dto['address']
-        except:
-            pass
-        try:
-            entity.code = dto['code']
-        except:
-            pass
+        for key, value in dto.items():
+            setattr(entity, key, value)
         db.session.commit()
         return entity
 
@@ -55,4 +41,3 @@ class ClientRepository(Create, Read, Update, Delete):
         entity = self.find_by_id(id)
         db.session.delete(entity)
         db.session.commit()
-        return entity

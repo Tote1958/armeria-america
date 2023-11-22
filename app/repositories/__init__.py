@@ -4,4 +4,3 @@ from .product_repository import ProductRepository
 from .productType_repository import ProductTypeRepository
 from .supplier_repository import SupplierRepository
 from .CRUD import Create, Read, Update, Delete
-from .role_repository import RoleRepository

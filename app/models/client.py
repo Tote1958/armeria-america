@@ -2,7 +2,7 @@ from __future__ import annotations
 from app.config.database import db
 from sqlalchemy.ext.hybrid import hybrid_property
 from dataclasses import dataclass
-from app.models.relations import clients_roles
+
 
 @dataclass
 class Client(db.Model):
@@ -14,7 +14,6 @@ class Client(db.Model):
     address = db.Column('address', db.String(250))
     email = db.Column('email', db.String(256))
 
-    roles = db.relationship('Role', secondary='clients_roles', back_populates="clients")
 
 
 

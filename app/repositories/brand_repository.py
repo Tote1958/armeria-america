@@ -17,14 +17,8 @@ class BrandRepository(Create, Read, Update, Delete):
     
     def update(self, dto, id: int) -> Brand:
         entity = self.find_by_id(id)
-        try:
-            entity.name = dto['name']
-        except:
-            pass
-        try:
-            entity.origin = dto['origin']
-        except:
-            pass
+        for key, value in dto.items():
+            setattr(entity, key, value)
         db.session.commit()
         return entity
 

@@ -35,22 +35,7 @@ class SupplierRepository(Read, Update, Create, Delete):
     
     def update(self,dto, id: int) -> Supplier: # data transfer object(dto)
         entity = self.find_by_id(id)
-        try:
-            entity.name = dto["name"]
-        except:
-            pass
-        try:
-            entity.email = dto["email"]
-        except:
-            pass
-        try:
-            entity.cuil = dto["cuil"]
-        except:
-            pass
-        try:
-            entity.code = dto["code"]
-        except:
-            pass
+        for key, value in dto.items():
+            setattr(entity, key, value)
         db.session.commit()
         return entity
-    

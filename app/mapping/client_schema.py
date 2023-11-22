@@ -1,7 +1,9 @@
 from app.models.client import Client
 from marshmallow import validate, fields, Schema, post_load
 
-
+"""
+Esta clase se encarga de adaptar los modelos a json
+"""
 class ClientSchema(Schema):
     id = fields.Integer(dump_only=True)
     name = fields.String(required=True, validate=validate.Length(min=1, max=105))

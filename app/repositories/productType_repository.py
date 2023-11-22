@@ -29,18 +29,8 @@ class ProductTypeRepository(Create, Read, Update, Delete):
     #Update
     def update(self, dto, id: int) -> ProductType:
         entity = self.find_by_id(id)
-        try:
-           entity.name = dto['name']
-        except:
-            pass
-        try:
-            entity.code = dto['code']
-        except:
-            pass
-        try:
-            entity.description = dto['description']
-        except:
-            pass
+        for key, value in dto.items():
+            setattr(entity, key, value)
         db.session.commit()
         return entity
     

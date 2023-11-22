@@ -26,13 +26,4 @@ class SupplierService: #van las tareas
     def delete(self, id:int) -> Supplier:
         return self.__repo.delete(id)
 
-    # def find_all(self) -> []: #es un parametro de salida
-    #     list_supplier = []
-    #     name = 'dante'
-    #     code = '1321233215'
-    #     cuil = '203211526305'
-    #     email = 'dante07082001@gmail.com'
-    #     supplier1 = Supplier(name, cuil, email, code)
-    #     list_supplier.append( supplier1 )
-    #     return list_supplier
     

@@ -31,9 +31,6 @@ def find_by_id(id):
         response_builder.add_message("No se encontro la marca").add_status_code(400).add_data(
             response)
         return response_schema.dump((response_builder.build())), 400
-    resp = jsonify(result)
-    resp.status_code = 200
-    return resp
 
 @brand.route('/brand/search/', methods=['GET'])
 def find_by_name():
